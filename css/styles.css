@@ -1,0 +1,38 @@
+.small {
+    font-size: small;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.main-background {
+    background-image: url("/images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main-page {
+    height: 400px;
+}
+
+.page {
+    min-height: 480px;
+}
+
+.title {
+    color: #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    font-size: 450%;
+    text-shadow: 2px 2px 8px rgba(120, 120, 120, 0.5);
+}
+
+.main {
+    font-size: xx-large;
+    font-weight: lighter;
+    font-style: oblique;
+    font-family: 'Times New Roman', Times, serif;
+    color: #666666;
+}
