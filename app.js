@@ -18,7 +18,11 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngMaterial', 
         .when('/edit/:referenceId', {
           templateUrl: 'templates/edit.html',
           controller: 'editCtrl'
-        }) 
+        })
+        .when('/login', {
+          templateUrl: 'templates/login.html',
+          controller: 'loginCtrl'
+        })  
         .otherwise({
           redirectTo: '/',
           templateUrl: 'templates/main.html',

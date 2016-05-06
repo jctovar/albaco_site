@@ -5,7 +5,6 @@
 .capitalize {
     text-transform: capitalize;
 }
-
 .main-background {
     background-image: url("/images/background.jpg");
     background-repeat: no-repeat;
@@ -26,7 +25,7 @@
     margin-right: auto;
     margin-top: 10%;
     font-size: 450%;
-    text-shadow: 2px 2px 8px rgba(120, 120, 120, 0.5);
+    text-shadow: 2px 2px 8px rgba(120, 120, 120, 0.4);
 }
 
 .main {
@@ -35,4 +34,18 @@
     font-style: oblique;
     font-family: 'Times New Roman', Times, serif;
     color: #666666;
+}
+
+.main-img {
+    max-width: 100px;
+    max-height: 100px;
+    border: 3px solid #f1f1f1;
+    border-radius: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    margin-left: 100px;
+    margin-bottom: 100px;
+}
+
+.main-list {
+    font-weight: 200;
 }
