@@ -22,7 +22,23 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngMaterial', 
         .when('/login', {
           templateUrl: 'templates/login.html',
           controller: 'loginCtrl'
-        })  
+        })
+        .when('/accounts', {
+          templateUrl: 'templates/accounts.html',
+          controller: 'accountsCtrl'
+        })
+        .when('/customers', {
+          templateUrl: 'templates/customers.html',
+          controller: 'customersCtrl'
+        })
+        .when('/categories', {
+          templateUrl: 'templates/categories.html',
+          controller: 'categoriesCtrl'
+        })
+        .when('/products/:categoryId', {
+          templateUrl: 'templates/products.html',
+          controller: 'productsCtrl'
+        }) 
         .otherwise({
           redirectTo: '/',
           templateUrl: 'templates/main.html',

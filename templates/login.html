@@ -1,9 +1,13 @@
 <div layout="column" layout-fill>  
-  <div id="footer" ng-include=" 'templates/header.html' "></div>
-  <md-content class="md-padding" layout-xs="column" layout="row">
-    <div flex-xs flex-gt-xs="50" layout="column">
-      <md-card>
-        <md-card-content>
+  <div id="header" ng-include=" 'templates/header.html' "></div>
+  <md-content layout-align="center" class="md-padding" layout-xs="column" layout="row">
+    <div flex-gt-xs="50" layout="column">
+          <h1 class="title">albaco</h1>
+          <md-card class="main-label">
+            <md-card-content>
+                Formulario de ingreso
+            </md-card-content>  
+          </md-card>
           <form name="loginForm">
             <md-input-container class="md-block" flex-gt-xs>
               <label>Usuario</label>
@@ -17,10 +21,14 @@
             </md-input-container>
           </form>
           <section layout-align="center center" layout="row">
-            <md-button  ng-disabled="!loginForm.$valid" class="md-raised md-primary md-hue-2" ng-click="login()">Ingresar</md-button>
+            <md-button flex ng-disabled="!loginForm.$valid" class="md-raised md-primary md-hue-2" ng-click="login()">Ingresar</md-button>
           </section>
-        </md-card-content>
-      </md-card>
+          <section layout-align="center" layout="row">
+            <p>Todavia no tienes cuenta, registrate</p> 
+          </section>
+          <section layout-align="center" layout="row">
+            <a class="small" ng-href="#/"><md-icon> keyboard_backspace </md-icon> regresar a inicio</a> 
+          </section>
     </div>
   </md-content>
 </div>

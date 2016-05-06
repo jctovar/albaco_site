@@ -1,3 +1,8 @@
+body {
+    font-weight: 200;
+    color: #333333;
+}
+
 .small {
     font-size: small;
 }
@@ -48,4 +53,27 @@
 
 .main-list {
     font-weight: 200;
+}
+
+p {
+    font-weight: 200;
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+}
+
+a:hover { 
+    color: dodgerblue;
+}
+
+.main-label {
+    border-left-color: dodgerblue;
+    border-left-style: solid;
+    border-left-width: 4px;
+}
+
+.dodgerblue {
+    color: dodgerblue !important;
 }
