@@ -54,7 +54,11 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngMaterial', 
         .when('/stocks/:productId', {
           templateUrl: 'templates/stocks.html',
           controller: 'stocksCtrl'
-        })  
+        })
+        .when('/dashboard', {
+          templateUrl: 'templates/dashboard.html',
+          controller: 'dashboardCtrl'
+        })   
         .otherwise({
           redirectTo: '/',
           templateUrl: 'templates/main.html',

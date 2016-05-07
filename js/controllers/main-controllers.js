@@ -8,6 +8,10 @@ angular.module('main.controllers', ['main.models', 'main.directives', 'base64', 
 
 })
 
+.controller('dashboardCtrl', function ($scope, $route, $routeParams, $location) {
+
+})
+
 .controller('accountsCtrl', function ($scope, $route, $routeParams, $location, accounts) {
     var query = accounts.get(function() {
         $scope.items = query.accounts;
