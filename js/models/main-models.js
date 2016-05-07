@@ -64,6 +64,55 @@ angular.module('main.models', ['ngResource'])
     });
 })
 
+.factory('pdf_template', function () {
+    return function(title) {  
+        var template = {
+            pageSize: 'LETTER',
+            content: [
+            {
+                text: title
+            },
+            {
+                style: 'items',
+                table: {
+                widths: ['*', '*', '*'],
+                body: [
+                    [{text: 'Producto', style: 'header'}, {text: 'Cantidad', style: 'header'},{text: 'Precio', style: 'header'}
+                    ],
+                    ['Apple', '100 grams', '52'],
+                    ['Bananas', '100 grams', '89'],
+                    ['Guava', '100 grams', '68'],
+                    ['Lemon', '100 grams', '29'],
+                    ['Mangos', '100 grams', '60'],
+                    ['Orange', '100 grams', '47'],
+                    ['Strawberries', '100 grams', '33']
+                ]
+                }
+            },
+            {
+                text: 'Importe'
+            },
+            {
+                text: 'Importe'
+            }
+            ],
+            styles: {
+            header: {
+                bold: true,
+                color: '#000',
+                fontSize: 11
+            },
+            items: {
+                color: '#666',
+                fontSize: 10
+            }
+            }
+        };
+        
+        return template;
+    }
+})
+
 .factory('save_items', function(invoice) {
     var interfaz = {
             get: function(invoice_id){

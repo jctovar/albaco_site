@@ -31,6 +31,18 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngMaterial', 
           templateUrl: 'templates/customers.html',
           controller: 'customersCtrl'
         })
+        .when('/invoices', {
+          templateUrl: 'templates/invoices.html',
+          controller: 'invoicesCtrl'
+        })
+        .when('/invoices/:invoiceId', {
+          templateUrl: 'templates/invoice.html',
+          controller: 'invoiceCtrl'
+        })
+        .when('/pdf/:invoiceId', {
+          
+          controller: 'pdfCtrl'
+        })
         .when('/categories', {
           templateUrl: 'templates/categories.html',
           controller: 'categoriesCtrl'
@@ -38,7 +50,11 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngMaterial', 
         .when('/products/:categoryId', {
           templateUrl: 'templates/products.html',
           controller: 'productsCtrl'
-        }) 
+        })
+        .when('/stocks/:productId', {
+          templateUrl: 'templates/stocks.html',
+          controller: 'stocksCtrl'
+        })  
         .otherwise({
           redirectTo: '/',
           templateUrl: 'templates/main.html',

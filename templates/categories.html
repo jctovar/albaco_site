@@ -1,4 +1,4 @@
-<div layout="column" layout-fill ng-cloak>  
+<div layout="column" layout-fill>  
   <div id="header" ng-include=" 'templates/header.html' "></div>
   <md-content layout-align="center" class="md-padding" layout="row">
     <md-list flex="80">
@@ -16,17 +16,17 @@
             <md-menu-content width="4">
               <md-menu-item>
                 <md-button ng-click="edit($index)">
-                  <div layout="row"><p flex>Editar categoria</p><md-icon> edit </md-icon></div>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="delete($index)">
-                  <div layout="row"><p flex>Eliminar categoria</p><md-icon> delete </md-icon></div>
+                  <div layout="row"><p flex>Editar categoría</p><md-icon> edit </md-icon></div>
                 </md-button>
               </md-menu-item>
               <md-menu-item>
                 <md-button ng-click="enable($index)">
-                  <div layout="row"><p flex>Eliminar categoria</p><md-icon> enable </md-icon></div>
+                  <div layout="row"><p flex>Ocultar categoría</p><md-icon> visibility </md-icon></div>
+                </md-button>
+              </md-menu-item>
+              <md-menu-item>
+                <md-button ng-click="delete($index)">
+                  <div layout="row"><p flex>Eliminar categoría</p><md-icon> delete </md-icon></div>
                 </md-button>
               </md-menu-item>
             </md-menu-content>
@@ -37,8 +37,6 @@
   </md-content>
   <md-button class="md-fab md-fab-bottom-right" ng-click="add()">        
     <md-icon> add </md-icon>
-    <md-tooltip md-direction="top"> Agregar cliente </md-tooltip>
-  </md-button>
-  
-            
+    <md-tooltip md-direction="top"> Agregar categoría </md-tooltip>
+  </md-button>        
 </div>

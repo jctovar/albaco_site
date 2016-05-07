@@ -2,12 +2,12 @@
   <div id="header" ng-include=" 'templates/header.html' "></div>
   <md-content layout-align="center" class="md-padding" layout="row">
     <md-list flex="80">
-      <md-subheader class="md-no-sticky">Lineas</md-subheader>
-        <md-list-item class="md-2-line secondary-button-padding" ng-repeat="item in items | filter: data.searchQuery" ng-href="#/stocks/{{item.product_id}}">
+      <md-subheader class="md-no-sticky">Notas</md-subheader>
+        <md-list-item class="md-2-line secondary-button-padding" ng-repeat="item in items | filter: data.searchQuery" ng-href="#/invoices/{{item.invoice_id}}">
           <div class="md-list-item-text" layout="column">
-            <h3 class="dodgerblue">{{ item.product_name | uppercase }}</h3>
-            <h4>{{ item.product_key | uppercase }} - {{ item.product_description }}</h4>
-            <p>{{ item.product_price_1 | currency }} {{ item.unit_name }}</p>
+            <h3 class="dodgerblue">{{ item.invoice_id }} - {{ item.customer_name | uppercase }}</h3>
+            <h4>{{ item.invoice_timestamp | date:'medium' }}</h4>
+            <p>{{ item.status_id }}</p>
           </div>
           <md-menu md-position-mode="target-right target">
             <md-button aria-label="Menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
@@ -16,17 +16,17 @@
             <md-menu-content width="4">
               <md-menu-item>
                 <md-button ng-click="edit($index)">
-                  <div layout="row"><p flex>Editar producto</p><md-icon> edit </md-icon></div>
+                  <div layout="row"><p flex>Editar nota</p><md-icon> edit </md-icon></div>
                 </md-button>
               </md-menu-item>
               <md-menu-item>
                 <md-button ng-click="enable($index)">
-                  <div layout="row"><p flex>Ocultar producto</p><md-icon> visibility </md-icon></div>
+                  <div layout="row"><p flex>Ocultar nota</p><md-icon> visibility </md-icon></div>
                 </md-button>
               </md-menu-item>
               <md-menu-item>
                 <md-button ng-click="delete($index)">
-                  <div layout="row"><p flex>Eliminar producto</p><md-icon> delete </md-icon></div>
+                  <div layout="row"><p flex>Eliminar nota</p><md-icon> delete </md-icon></div>
                 </md-button>
               </md-menu-item>
             </md-menu-content>
@@ -37,6 +37,6 @@
   </md-content>
   <md-button class="md-fab md-fab-bottom-right" ng-click="add()">        
     <md-icon> add </md-icon>
-    <md-tooltip md-direction="top"> Agregar producto </md-tooltip>
+    <md-tooltip md-direction="top"> Agregar nota </md-tooltip>
   </md-button>
 </div>
