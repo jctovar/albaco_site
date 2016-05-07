@@ -31,6 +31,10 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngMaterial', 
           templateUrl: 'templates/customers.html',
           controller: 'customersCtrl'
         })
+        .when('/customers/:customerId', {
+          templateUrl: 'templates/customer.html',
+          controller: 'customerCtrl'
+        })
         .when('/invoices', {
           templateUrl: 'templates/invoices.html',
           controller: 'invoicesCtrl'
@@ -38,10 +42,6 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngMaterial', 
         .when('/invoices/:invoiceId', {
           templateUrl: 'templates/invoice.html',
           controller: 'invoiceCtrl'
-        })
-        .when('/pdf/:invoiceId', {
-          
-          controller: 'pdfCtrl'
         })
         .when('/categories', {
           templateUrl: 'templates/categories.html',

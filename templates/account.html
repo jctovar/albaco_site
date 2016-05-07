@@ -1,0 +1,37 @@
+<div layout="column" layout-fill>  
+  <div id="header" ng-include=" 'templates/header.html' "></div>
+    <md-content layout-align="center" class="md-padding" layout="column">
+        
+        <form name="form">
+            <md-input-container class="md-block">
+                <label>Nombre completo</label>
+                <input ng-model="customer.customer_name" type="text" required autofocus>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Dirección 1</label>
+                <input ng-model="customer.customer_address_1" type="text" required>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Dirección 2</label>
+                <input ng-model="customer.customer_address_2" type="text" required>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Código postal</label>
+                <input ng-model="customer.customer_postalcode" type="text" required>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Telefono</label>
+                <input ng-model="customer.customer_phone" type="text" required>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Correo electrónico</label>
+                <input ng-model="customer.customer_email" type="email" required>
+            </md-input-container>
+        </form>
+        
+    </md-content>
+    <md-button ng-disabled="!form.$valid" class="md-fab md-fab-bottom-right" ng-click="save()">        
+    <md-icon> check </md-icon>
+    <md-tooltip md-direction="top"> Guardar </md-tooltip>
+  </md-button>
+</div>

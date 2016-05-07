@@ -1,0 +1,64 @@
+<div layout="column" layout-fill>  
+  <div id="header" ng-include=" 'templates/header.html' "></div>
+    <md-content layout-align="center" class="md-padding" layout="column">
+        <!-- Inicia formulario -->
+        <form name="form">
+            <md-input-container class="md-block">
+                <label>Nombre completo</label>
+                <input name="customer_name" ng-model="customer.customer_name" type="text" md-maxlength="45" capitalize required autofocus>
+                <div ng-messages="form.customer_name.$error">
+                    <div ng-message="required">Campo requerido</div>
+                    <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Dirección 1</label>
+                <input name="customer_address_1" ng-model="customer.customer_address_1" type="text" md-maxlength="45" capitalize required>
+                <div ng-messages="form.customer_address_1.$error">
+                    <div ng-message="required">Campo requerido</div>
+                    <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Dirección 2</label>
+                <input name="customer_address_2" ng-model="customer.customer_address_2" type="text" md-maxlength="45" capitalize required>
+                <div ng-messages="form.customer_address_2.$error">
+                    <div ng-message="required">Campo requerido</div>
+                    <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Código postal</label>
+                <input name="customer_postalcode" ng-model="customer.customer_postalcode" type="text" ng-minlength="5" ng-maxlength="5" ng-pattern="/^[0-9]{5}$/" required>
+                <div ng-messages="form.customer_postalcode.$error">
+                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                        Se requiere un código postal valido
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Teléfono</label>
+                <input name="customer_phone" ng-model="customer.customer_phone" type="text" ng-minlength="10" ng-maxlength="10" ng-pattern="/^[0-9]{10}$/">
+                <div ng-messages="form.customer_phone.$error">
+                    <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+                        Se requiere un teléfono valido
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Correo electrónico</label>
+                <input name="customer_email" ng-model="customer.customer_email" type="email" md-maxlength="45" ng-pattern="/^.+@.+\..+$/" required>
+                <div ng-messages="form.customer_email.$error">
+                    <div ng-message-exp="['required', 'md-maxlength', 'pattern']">
+                        Se requiere un correo electrónico valido
+                    </div>
+                </div>
+            </md-input-container>
+        </form>
+        <!-- Termina formulario -->
+    </md-content>
+    <md-button ng-disabled="!form.$valid" class="md-fab md-warn md-fab-bottom-right" ng-click="save()">        
+    <md-icon> check </md-icon>
+    <md-tooltip md-direction="top"> Guardar </md-tooltip>
+  </md-button>
+</div>
