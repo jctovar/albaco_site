@@ -12,14 +12,21 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
 
 })
 
-.controller('profileCtrl', function ($scope, $stateParams, profile) {
-    var query = profile.get({ id: 1 }, function () {
+.controller('profileCtrl', function ($scope, $state, $stateParams, profile) {
+    var query = profile.get({ id: sessionStorage.profile_id }, function () {
         $scope.profile = query.profile[0];
     });
+    
+    //  save profile
+    $scope.save = function() {
+        profile.update($scope.profile, function() {
+            $state.go('app.dashboard'); 
+        });
+    };
 })
 
 .controller('accountsCtrl', function ($scope, accounts) {
-    var query = accounts.get(function () {
+    var query = accounts.get({ profileid: sessionStorage.profile_id }, function () {
         $scope.items = query.accounts;
     });
 })

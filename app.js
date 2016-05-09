@@ -6,6 +6,10 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
             .accentPalette('green');
 })
 
+.config(function () {
+  sessionStorage.profile_id = 1;
+})
+
 .run(function ($rootScope) {
   //al cambiar de rutas
   //$rootScope.$on('$routeChangeStart', function() {
@@ -50,6 +54,15 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
               'content@': {
                   templateUrl: 'templates/profile.html',
                   controller: 'profileCtrl'
+              }
+          }
+      })
+      .state('app.accounts', {
+          url: 'accounts',
+          views: {
+              'content@': {
+                  templateUrl: 'templates/accounts.html',
+                  controller: 'accountsCtrl'
               }
           }
       })
