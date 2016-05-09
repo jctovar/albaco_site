@@ -1,30 +1,36 @@
 angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directives', 'base64',  'main.filters'])
 
-.controller('navCtrl', function ($scope) {
+.controller('headerCtrl', function ($scope) {
     
 })
  
-.controller('mainCtrl', function ($scope, $route, $routeParams, $location) {
+.controller('mainCtrl', function ($scope) {
 
 })
 
-.controller('dashboardCtrl', function ($scope, $route, $routeParams, $location) {
+.controller('dashboardCtrl', function ($scope) {
 
 })
 
-.controller('accountsCtrl', function ($scope, $route, $routeParams, $location, accounts) {
-    var query = accounts.get(function() {
+.controller('profileCtrl', function ($scope, $stateParams, profile) {
+    var query = profile.get({ id: 1 }, function () {
+        $scope.profile = query.profile[0];
+    });
+})
+
+.controller('accountsCtrl', function ($scope, accounts) {
+    var query = accounts.get(function () {
         $scope.items = query.accounts;
     });
 })
 
-.controller('customersCtrl', function ($scope, $route, $routeParams, $location, $mdDialog, customers) {
+.controller('customersCtrl', function ($scope, $mdDialog, customers) {
     $scope.openMenu = function($mdOpenMenu, ev) {
       originatorEv = ev;
       $mdOpenMenu(ev);
     };
     
-    var query = customers.get(function() {
+    var query = customers.get(function () {
         $scope.items = query.customer;
     });
     
@@ -54,7 +60,7 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
     $scope.customer = {};
     $scope.title = "Editar cliente";
     
-    var query1 = discounts.get(function() {
+    var query1 = discounts.get(function () {
         $scope.discounts = query1.discounts;
     });
     //  get customer
@@ -70,7 +76,7 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
 })
 
 .controller('invoicesCtrl', function ($scope, $route, $routeParams, $location, invoices) {
-    var query = invoices.get(function() {
+    var query = invoices.get(function () {
         $scope.items = query.invoice;
     });
 })
@@ -97,7 +103,7 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
       $mdOpenMenu(ev);
     };
       
-      var query = categories.get(function() {
+      var query = categories.get(function () {
         $scope.items = query.category;
     })
 })

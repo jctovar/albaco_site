@@ -1,6 +1,18 @@
-body {
+html, body {
+    font-family: 'Roboto', sans-serif;
+    font-size:14px;
+    height:100%;
+    margin: 0px;
+    padding: 0px;
     font-weight: 200;
     color: #333333;
+}
+
+#content  {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 5px;
+  overflow: hidden;
 }
 
 .small {

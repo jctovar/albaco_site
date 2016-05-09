@@ -2,23 +2,22 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Albaco</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <title>Albaco POS</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link href="bower_components/angular-material/angular-material.min.css" rel="stylesheet" >
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
     <link href="css/styles.css" rel="stylesheet">
   </head>
   <body ng-app="starter" layout="column" layout-fill ng-cloak>
-    <div ng-view>
-      <md-progress-linear md-mode="indeterminate"></md-progress-linear>
-    </div>
-    <div id="footer" ng-include=" 'templates/footer.html' "></div>
+    <div ui-view="header"></div>
+    <div ui-view="content"></div>
+    <div ui-view="footer"></div>
     <!-- Angular requires next libraries -->
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js" type="text/javascript"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js" type="text/javascript"></script>
     <script src="bower_components/angular-aria/angular-aria.min.js"></script>
     <script src="bower_components/angular-messages/angular-messages.min.js"></script>
     <script src="bower_components/angular-material/angular-material.min.js"></script>
