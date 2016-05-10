@@ -56,6 +56,9 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
     
     //  save data
     $scope.save = function() {
+        $scope.profile.profile_password = $scope.profile.profile_password_1;
+        delete $scope.profile.profile_password_1;
+        delete $scope.profile.profile_password_2;
         profiles.update($scope.profile, function() {
             $state.go('app.dashboard'); 
         });
