@@ -1,22 +1,22 @@
 angular.module('main.models', ['ngResource'])
 .constant("server_config",{url : "https://goritec.com:3000", key : "84656ca7c7ccc6b44523a18b6bdf94140220bfc8"})
 
-.factory('profile', function($resource, server_config) {
-	return $resource(server_config.url + '/profile/:id', { account_key : server_config.key, id : '@_id' },
+.factory('profiles', function($resource, server_config) {
+	return $resource(server_config.url + '/profiles/:accountid/:profileid', { account_key : server_config.key, id : '@_id' },
     {
         'update': { method:'PUT' }
     });
 })
 
 .factory('accounts', function($resource, server_config) {
-	return $resource(server_config.url + '/account/:profileid/:accountid', { account_key : server_config.key, id : '@_id' },
+	return $resource(server_config.url + '/accounts/:accountid', { account_key : server_config.key, id : '@_id' },
     {
         'update': { method:'PUT' }
     });
 })
 
 .factory('customers', function($resource, server_config) {
-	return $resource(server_config.url + '/customer/:id', { account_key : server_config.key, id : '@_id' },
+	return $resource(server_config.url + '/customers/:accountid/:customerid', { account_key : server_config.key, id : '@_id' },
     {
         'update': { method:'PUT' }
     });

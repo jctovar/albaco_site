@@ -12,23 +12,54 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
 
 })
 
-.controller('profileCtrl', function ($scope, $state, $stateParams, profile) {
-    var query = profile.get({ id: sessionStorage.profile_id }, function () {
-        $scope.profile = query.profile[0];
+.controller('accountCtrl', function ($scope, $state, $stateParams, accounts) {
+    var query = accounts.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.account = query.accounts[0];
     });
     
-    //  save profile
+    //  save data
     $scope.save = function() {
-        profile.update($scope.profile, function() {
+        accounts.update($scope.account, function() {
             $state.go('app.dashboard'); 
         });
     };
 })
 
-.controller('accountsCtrl', function ($scope, accounts) {
-    var query = accounts.get({ profileid: sessionStorage.profile_id }, function () {
-        $scope.items = query.accounts;
+.controller('profilesCtrl', function ($scope, profiles) {
+    $scope.openMenu = function($mdOpenMenu, ev) {
+      originatorEv = ev;
+      $mdOpenMenu(ev);
+    };
+    
+    var query = profiles.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.items = query.profiles;
     });
+})
+
+.controller('myCtrl', function ($scope, $state, profiles) {
+    var query = profiles.get({ accountid: sessionStorage.account_id, profileid: sessionStorage.profile_id }, function () {
+        $scope.profile = query.profiles[0];
+    });
+    
+    //  save data
+    $scope.save = function() {
+        profiles.update($scope.profile, function() {
+            $state.go('app.dashboard'); 
+        });
+    };
+})
+
+.controller('passwordCtrl', function ($scope, $state, profiles) {
+    var query = profiles.get({ accountid: sessionStorage.account_id, profileid: sessionStorage.profile_id }, function () {
+        $scope.profile = query.profiles[0];
+    });
+    
+    //  save data
+    $scope.save = function() {
+        profiles.update($scope.profile, function() {
+            $state.go('app.dashboard'); 
+        });
+    };
 })
 
 .controller('customersCtrl', function ($scope, $mdDialog, customers) {
@@ -37,8 +68,8 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
       $mdOpenMenu(ev);
     };
     
-    var query = customers.get(function () {
-        $scope.items = query.customer;
+    var query = customers.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.items = query.customers;
     });
     
     $scope.edit = function (index, ev) {

@@ -7,6 +7,7 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
 })
 
 .config(function () {
+  sessionStorage.account_id = 1;
   sessionStorage.profile_id = 1;
 })
 
@@ -48,24 +49,43 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
               }
           }
       })
-      .state('app.profile', {
-          url: 'profile',
+      .state('app.profiles', {  // listado de usuarios del sistema
+          url: 'profiles',
           views: {
               'content@': {
-                  templateUrl: 'templates/profile.html',
-                  controller: 'profileCtrl'
+                  templateUrl: 'templates/profiles.html',
+                  controller: 'profilesCtrl'
               }
           }
       })
-      .state('app.accounts', {
-          url: 'accounts',
+      .state('app.my', {
+          url: 'my',
           views: {
               'content@': {
-                  templateUrl: 'templates/accounts.html',
-                  controller: 'accountsCtrl'
+                  templateUrl: 'templates/my.html',
+                  controller: 'myCtrl'
               }
           }
       })
+      .state('app.password', {
+          url: 'password',
+          views: {
+              'content@': {
+                  templateUrl: 'templates/password.html',
+                  controller: 'passwordCtrl'
+              }
+          }
+      })
+      .state('app.account', {   // datos de la empresa
+          url: 'account',
+          views: {
+              'content@': {
+                  templateUrl: 'templates/account.html',
+                  controller: 'accountCtrl'
+              }
+          }
+      })
+      
       .state('app.customers', {
           url: 'customers',
           views: {
