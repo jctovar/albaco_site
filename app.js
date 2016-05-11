@@ -40,6 +40,15 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
               }
           }
       })
+      .state('app.login', {
+          url: 'login',
+          views: {
+              'content@': {
+                  templateUrl: 'templates/login.html',
+                  controller: 'loginCtrl'
+              }
+          }
+      })
       .state('app.dashboard', {
           url: 'dashboard',
           views: {
@@ -85,13 +94,30 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
               }
           }
       })
-      
       .state('app.customers', {
           url: 'customers',
           views: {
               'content@': {
                   templateUrl: 'templates/customers.html',
                   controller: 'customersCtrl'
+              }
+          }
+      })
+      .state('app.invoices', {
+          url: 'invoices',
+          views: {
+              'content@': {
+                  templateUrl: 'templates/invoices.html',
+                  controller: 'invoicesCtrl'
+              }
+          }
+      })
+      .state('app.categories', {
+          url: 'categories',
+          views: {
+              'content@': {
+                  templateUrl: 'templates/categories.html',
+                  controller: 'categoriesCtrl'
               }
           }
       })

@@ -116,13 +116,18 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
     };
 })
 
-.controller('invoicesCtrl', function ($scope, $route, $routeParams, $location, invoices) {
-    var query = invoices.get(function () {
-        $scope.items = query.invoice;
+.controller('invoicesCtrl', function ($scope, invoices) {
+    $scope.openMenu = function($mdOpenMenu, ev) {
+      originatorEv = ev;
+      $mdOpenMenu(ev);
+    };
+    
+    var query = invoices.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.items = query.invoices;
     });
 })
 
-.controller('invoiceCtrl', function ($scope, $route, $routeParams, $location, invoices, details, pdf_template) {
+.controller('invoiceCtrl', function ($scope, invoices, details, pdf_template) {
     var query1 = invoices.get({ id: $routeParams.invoiceId }, function() {
         $scope.invoice = query1.invoice[0];
     })
@@ -138,14 +143,14 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
     };
 })
 
-.controller('categoriesCtrl', function ($scope, $route, $routeParams, $location, categories) {
+.controller('categoriesCtrl', function ($scope, categories) {
     $scope.openMenu = function($mdOpenMenu, ev) {
       originatorEv = ev;
       $mdOpenMenu(ev);
     };
       
-      var query = categories.get(function () {
-        $scope.items = query.category;
+      var query = categories.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.items = query.categories;
     })
 })
 
@@ -171,6 +176,6 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
     });
 })
 
-.controller('loginCtrl', function ($scope, $route, $routeParams, $location) {
+.controller('loginCtrl', function ($scope, login) {
 
 }); 

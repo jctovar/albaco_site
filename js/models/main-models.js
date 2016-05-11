@@ -1,6 +1,13 @@
 angular.module('main.models', ['ngResource'])
 .constant("server_config",{url : "https://goritec.com:3000", key : "84656ca7c7ccc6b44523a18b6bdf94140220bfc8"})
 
+.factory('login', function($resource, server_config) {
+	return $resource(server_config.url + '/login/:profileid', { account_key : server_config.key, id : '@_id' },
+    {
+        'update': { method:'PUT' }
+    });
+})
+
 .factory('profiles', function($resource, server_config) {
 	return $resource(server_config.url + '/profiles/:accountid/:profileid', { account_key : server_config.key, id : '@_id' },
     {
@@ -23,7 +30,7 @@ angular.module('main.models', ['ngResource'])
 })
 
 .factory('invoices', function($resource, server_config) {
-	return $resource(server_config.url + '/invoice/:id', { account_key : server_config.key, id : '@_id' },
+	return $resource(server_config.url + '/invoices/:accountid/:invoiceid', { account_key : server_config.key, id : '@_id' },
     {
         'update': { method:'PUT' }
     });
@@ -44,7 +51,7 @@ angular.module('main.models', ['ngResource'])
 })
 
 .factory('categories', function($resource, server_config) {
-	return $resource(server_config.url + '/category/:id', { account_key : server_config.key, id : '@_id' },
+	return $resource(server_config.url + '/categories/:accountid/:categoryid', { account_key : server_config.key, id : '@_id' },
     {
         'update': { method:'PUT' }
     });

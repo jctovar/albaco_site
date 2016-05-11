@@ -3,11 +3,7 @@
   <md-content layout-align="center" class="md-padding" layout-xs="column" layout="row">
     <div flex-gt-xs="50" layout="column">
           <h1 class="title">albaco</h1>
-          <md-card class="main-label">
-            <md-card-content>
-                Formulario de ingreso
-            </md-card-content>  
-          </md-card>
+          <md-subheader class="md-primary">Formulario de ingreso</md-subheader>
           <form name="loginForm">
             <md-input-container class="md-block" flex-gt-xs>
               <label>Usuario</label>
@@ -20,7 +16,7 @@
               <input ng-model="account_password" type="password" required>
             </md-input-container>
           </form>
-          <section layout-align="center center" layout="row">
+          <section layout-align="center" layout="row">
             <md-button flex ng-disabled="!loginForm.$valid" class="md-raised md-primary md-hue-2" ng-click="login()">Ingresar</md-button>
           </section>
           <section layout-align="center" layout="row">
