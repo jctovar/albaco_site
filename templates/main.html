@@ -1,21 +1,50 @@
-
-  <div class="main-background main-page">
-    <h1 class="title">albaco</h1>
+<md-toolbar class="header md-whiteframe-2dp" layout="row">
+  <div class="md-toolbar-tools">
+      <md-menu md-position-mode="target-right target">
+          <md-button aria-label="Menu" class="md-icon-button" md-ink-ripple hide-gt-xs ng-click="openMenu($mdOpenMenu, $event)">
+              <md-icon> menu </md-icon>
+          </md-button>
+          <md-menu-content width="4">
+              <md-menu-item>
+              <md-button ng-click="go('login')">
+                  <div layout="row"><p flex>Ingresar</p></div>
+              </md-button>
+              </md-menu-item>
+              <md-menu-item>
+              <md-button ng-click="go('signin')">
+                  <div layout="row"><p flex>Registro</p></div>
+              </md-button>
+              </md-menu-item>
+          </md-menu-content>
+      </md-menu>
+      <h2> albaco pos </h2>
+      <span flex></span>
+      <span hide-xs>
+          <md-button md-ink-ripple aria-label="ingresar" ng-href="#/login"> ingresar </md-button>
+          <md-button md-ink-ripple aria-label="registro" ng-href="#/login"> registro </md-button>
+      </span>
   </div>
-  <md-content class="">
-    <div layout-align="center center">
-      <p class="main center center">albaco, un POS enfocado a la nube</p>
+</md-toolbar>
+<!-- Main Container -->
+<div layout="column" layout-fill>
+  <div flex="50" class="big-image">
+    <div layout="row">
+      <h1 class="title">albaco</h1>
     </div>
-    <div class="ng-scope">
-      <div class="flex">
-        <img src="/images/albaco.png" class="main-img" alt="logo">
-      </div>
-      <div class="flex-60">
-        <ul class="main-list">
+  </div>
+  <div flex="50">
+    <div layout="row" layout-align="center">
+      <p class="slogan" >albaco, un POS enfocado a la nube</p>
+    </div>
+    <div layout="row" layout-align="center">
+      <img src="/images/albaco.png" class="albaco-img" alt="logo">
+    </div>
+    <div layout="row" class="md-padding" layout-align="center">
+        <ul>
           <li>Ligero</li>
           <li>Android, iOS, Windows</li>
           <li>Administración centralizada</li>
         </ul>
-      </div>
-    </div>
-  </md-content>
+    </div> 
+  </div>
+</div>

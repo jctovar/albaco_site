@@ -4,8 +4,21 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
     
 })
  
-.controller('mainCtrl', function ($scope) {
-
+.controller('mainCtrl', function ($scope, $state) {
+    $scope.openMenu = function($mdOpenMenu, ev) {
+      originatorEv = ev;
+      $mdOpenMenu(ev);
+    };
+    
+    $scope.go = function (value) {
+       console.log(value);
+       switch(value) {
+            case 'login':
+                $state.go('app.login'); 
+            case 'signin':
+                $state.go('app.signin'); 
+       }
+    };
 })
 
 .controller('menuCtrl', function ($scope, $mdSidenav) {

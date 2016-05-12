@@ -9,9 +9,8 @@
     <link href="css/styles.css" rel="stylesheet">
   </head>
   <body ng-app="starter" layout="column" layout-fill ng-cloak>
-    <div ui-view="header"></div>
     <div ui-view="content"></div>
-    <div id="footer" ng-include=" 'templates/partials/footer.html' "></div>
+    <div ng-include=" 'templates/partials/footer.html' "></div>
     <!-- Angular requires next libraries -->
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-resource/angular-resource.min.js"></script>

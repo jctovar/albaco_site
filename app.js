@@ -28,11 +28,6 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
       //la cuál hemos inyectado en la acción run de la aplicación
       //auth.checkStatus();
   //})
-  $rootScope.$on('$stateNotFound', function (event, unfoundState, fromState, fromParams) { 
-        console.log(unfoundState.to); // "lazy.state"
-        console.log(unfoundState.toParams); // {a:1, b:2}
-        console.log(unfoundState.options); // {inherit:false} + default options
-    })
 })
   
 .config(function ($stateProvider, $urlRouterProvider) {
@@ -41,22 +36,16 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
     $stateProvider
       
       // app start
-      .state('app', {
-          url: '/app',
-          views: {
-              'content': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app': { templateUrl: '/templates/invoices.html', controller: 'invoicesCtrl' }
-          }
-      })
-      .state('customers', {
-          url: '/customers',
+      
+      .state('app.customers', {
+          url: 'customers',
           views: {
               'content': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
               'columnOne@customers': { templateUrl: '/templates/customers.html', controller: 'customersCtrl' }
           }
       })
       .state('app.profiles', {  // listado de usuarios del sistema
-          url: '/profiles',
+          url: 'profiles',
           views: {
               'columnOne@app': { templateUrl: '/templates/invoices.html', controller: 'invoicesCtrl' }
           }
@@ -125,30 +114,54 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
               }
           }
       })
-      .state('main',{
+      .state('app',{
           url: '/',
           views: {
-              'header': {
-                  templateUrl: '/templates/partials/header.html',
-                  controller: 'headerCtrl'
-              },
               'content': {
                   templateUrl: '/templates/main.html',
                   controller: 'mainCtrl' 
               }
           }
       })
-      .state('login', {
-          url: '/login',
+      .state('app.login', {
+          url: 'login',
           views: {
-              'header': {
-                  templateUrl: '/templates/partials/header.html',
-                  controller: 'headerCtrl'
-              },
-              'content': {
-                  templateUrl: '/templates/login.html',
-                  controller: 'loginCtrl' 
+              'content@': {
+                  templateUrl: 'templates//main/login.html',
+                  controller: 'loginCtrl'
               }
+          }
+      })
+      .state('app.signin', {
+          url: 'login',
+          views: {
+              'content@': {
+                  templateUrl: 'templates//main/login.html',
+                  controller: 'loginCtrl'
+              }
+          }
+      })
+      .state('app.about', {
+          url: 'about',
+          views: {
+              'content@': {
+                  templateUrl: 'templates/main/about.html'
+              }
+          }
+      })
+      .state('app.contact', {
+          url: 'contact',
+          views: {
+              'content@': {
+                  templateUrl: 'templates/main/contact.html'
+              }
+          }
+      })
+      .state('app.dashboard', {
+          url: 'dashboard',
+          views: {
+              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
+              'columnOne@app.dashboard': { templateUrl: '/templates/invoices.html', controller: 'invoicesCtrl' }
           }
       });
  
