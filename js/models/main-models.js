@@ -29,6 +29,13 @@ angular.module('main.models', ['ngResource'])
     });
 })
 
+.factory('suppliers', function($resource, server_config) {
+	return $resource(server_config.url + '/suppliers/:accountid/:customerid', { account_key : server_config.key, id : '@_id' },
+    {
+        'update': { method:'PUT' }
+    });
+})
+
 .factory('invoices', function($resource, server_config) {
 	return $resource(server_config.url + '/invoices/:accountid/:invoiceid', { account_key : server_config.key, id : '@_id' },
     {
@@ -44,7 +51,7 @@ angular.module('main.models', ['ngResource'])
 })
 
 .factory('products', function($resource, server_config) {
-	return $resource(server_config.url + '/product/:categoryId/:productId', { account_key : server_config.key, id : '@_id' },
+	return $resource(server_config.url + '/products/:accountid/:produciId', { account_key : server_config.key, id : '@_id' },
     {
         'update': { method:'PUT' }
     });

@@ -90,3 +90,17 @@ a:hover {
 .dodgerblue {
     color: dodgerblue !important;
 }
+
+
+md-toolbar:not(.md-hue-1), .md-fab {
+  fill: #fff;
+}
+
+md-toolbar input {
+    color: white !important;
+    margin-top: 22px !important;
+    background-color: dodgerblue !important;
+    padding-left: 10px !important;
+    border-radius: 5px !important;
+}
+

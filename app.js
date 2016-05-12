@@ -1,9 +1,19 @@
-angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
-.config(function( $mdThemingProvider, $mdIconProvider ){
-  $mdThemingProvider.theme('default')
-            .primaryPalette('deep-purple')
-            .warnPalette('pink')
-            .accentPalette('green');
+angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
+.config(function($mdThemingProvider) {
+    var customBlueMap = 		$mdThemingProvider.extendPalette('light-blue', {
+        'contrastDefaultColor': 'light',
+        'contrastDarkColors': ['50'],
+        '50': 'ffffff'
+    });
+    $mdThemingProvider.definePalette('customBlue', customBlueMap);
+    $mdThemingProvider.theme('default')
+        .primaryPalette('customBlue', {
+        'default': '500',
+        'hue-1': '50'
+        })
+        .accentPalette('pink');
+    $mdThemingProvider.theme('input', 'default')
+            .primaryPalette('grey')
 })
 
 .config(function () {
@@ -11,20 +21,25 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
   sessionStorage.profile_id = 1;
 })
 
-.run(function ($rootScope) {
+.run(function ($rootScope, $state) {
   //al cambiar de rutas
   //$rootScope.$on('$routeChangeStart', function() {
       //llamamos a checkStatus, el cual lo hemos definido en la factoria auth
       //la cuál hemos inyectado en la acción run de la aplicación
       //auth.checkStatus();
   //})
+  $rootScope.$on('$stateNotFound', function (event, unfoundState, fromState, fromParams) { 
+        console.log(unfoundState.to); // "lazy.state"
+        console.log(unfoundState.toParams); // {a:1, b:2}
+        console.log(unfoundState.options); // {inherit:false} + default options
+    })
 })
   
 .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
- 
+     // main start
     $stateProvider
-      .state('app',{
+      .state('main',{
           url: '/',
           views: {
               'header': {
@@ -34,41 +49,42 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
               'content': {
                   templateUrl: '/templates/main.html',
                   controller: 'mainCtrl' 
+              }
+          }
+      })
+      .state('login', {
+          url: '/login',
+          views: {
+              'header': {
+                  templateUrl: '/templates/partials/header.html',
+                  controller: 'headerCtrl'
               },
-              'footer': {
-                  templateUrl: '/templates/partials/footer.html'
+              'content': {
+                  templateUrl: '/templates/login.html',
+                  controller: 'loginCtrl' 
               }
           }
       })
-      .state('app.login', {
-          url: 'login',
+      // app start
+      .state('app', {
+          url: '/app',
           views: {
-              'content@': {
-                  templateUrl: 'templates/login.html',
-                  controller: 'loginCtrl'
-              }
-          }
-      })
-      .state('app.dashboard', {
-          url: 'dashboard',
-          views: {
-              'content@': {
-                  templateUrl: 'templates/dashboard.html',
-                  controller: 'dashboardCtrl'
-              }
+              // the main template will be placed here (relatively named)
+              'content': { templateUrl: '/templates/partials/app.html' },
+              'columnOne@app': { template: 'Look I am a column!', controller: 'dashboardCtrl' }
           }
       })
       .state('app.profiles', {  // listado de usuarios del sistema
-          url: 'profiles',
+          url: '/app/profiles',
           views: {
-              'content@': {
+              'content@app': {
                   templateUrl: 'templates/profiles.html',
                   controller: 'profilesCtrl'
               }
           }
       })
       .state('app.my', {
-          url: 'my',
+          url: '/app/my',
           views: {
               'content@': {
                   templateUrl: 'templates/my.html',
@@ -103,6 +119,15 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
               }
           }
       })
+      .state('app.suppliers', {
+          url: 'suppliers',
+          views: {
+              'content@': {
+                  templateUrl: 'templates/suppliers.html',
+                  controller: 'suppliersCtrl'
+              }
+          }
+      })
       .state('app.invoices', {
           url: 'invoices',
           views: {
@@ -121,5 +146,14 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
               }
           }
       })
+      .state('app.products', {
+          url: 'products',
+          views: {
+              'content@': {
+                  templateUrl: 'templates/products.html',
+                  controller: 'productsCtrl'
+              }
+          }
+      });
  
 }]);

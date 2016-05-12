@@ -9,7 +9,10 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
 })
 
 .controller('dashboardCtrl', function ($scope) {
-
+    $scope.toggleSidenav = function(menuId) {
+        $mdSidenav(menuId).toggle();
+    };
+    console.log('...');
 })
 
 .controller('accountCtrl', function ($scope, $state, $stateParams, accounts) {
@@ -97,6 +100,22 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
     };
 })
 
+.controller('suppliersCtrl', function ($scope, $mdDialog, suppliers) {
+    $scope.openMenu = function($mdOpenMenu, ev) {
+      originatorEv = ev;
+      $mdOpenMenu(ev);
+    };
+    
+    var query = suppliers.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.items = query.suppliers;
+    });
+    
+    $scope.edit = function (index, ev) {
+         var item = $scope.items[index];
+         $location.path('/suppliers/' + item.customer_id)
+    };
+})
+
 .controller('customerCtrl', function ($scope, $route, $routeParams, $location, customers, discounts) {
     $scope.customer = {};
     $scope.title = "Editar cliente";
@@ -154,14 +173,14 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
     })
 })
 
-.controller('productsCtrl', function ($scope, $route, $routeParams, $location, products) {
+.controller('productsCtrl', function ($scope, products) {
     $scope.openMenu = function($mdOpenMenu, ev) {
       originatorEv = ev;
       $mdOpenMenu(ev);
     };
     
-    var query = products.get({ categoryId: $routeParams.categoryId }, function () {
-        $scope.items = query.product;
+    var query = products.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.items = query.products;
     });
 })
 
@@ -176,6 +195,5 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
     });
 })
 
-.controller('loginCtrl', function ($scope, login) {
-
+.controller('loginCtrl', function ($scope, $state, $stateParams, login) {
 }); 

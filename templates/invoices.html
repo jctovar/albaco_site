@@ -5,7 +5,7 @@
         <md-list-item class="md-2-line secondary-button-padding" ng-repeat="item in items | filter: data.searchQuery">
           <div class="md-list-item-text" layout="column">
             <h3 class="dodgerblue">{{ item.sale_id }} - {{ item.customer_name | uppercase }}</h3>
-            <h4>{{ item.status_id }} {{ item.sale_total | currency }}</h4>
+            <h4>{{ item.status_id }} {{ item.sale_total | currency }}&nbsp;</h4>
             <p>{{ item.sale_timestamp | date:'medium' }}</p>
           </div>
           <div id="header" ng-include=" 'templates/template.menu.html' "></div>
