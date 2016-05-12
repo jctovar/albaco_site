@@ -2,14 +2,14 @@
 html, body {
     font-family: 'Roboto', sans-serif;
     font-size:14px;
-    height:100%;
+    font-weight: 200 !important;
+    height: 100%;
     margin: 0px;
     padding: 0px;
-    font-weight: 200;
     color: #333333;
 }
 
-#content  {
+#content--  {
   padding-left: 40px;
   padding-right: 40px;
   padding-top: 5px;
@@ -29,11 +29,11 @@ html, body {
     background-size: cover;
 }
 
-.main-page {
+.main-page-- {
     height: 400px;
 }
 
-.page {
+.page-- {
     min-height: 480px;
 }
 
@@ -64,28 +64,10 @@ html, body {
     margin-bottom: 100px;
 }
 
-.main-list {
-    font-weight: 200;
-}
 
-p {
-    font-weight: 200;
-}
 
-a {
-    text-decoration: none;
-    color: #333333;
-}
 
-a:hover { 
-    color: dodgerblue;
-}
 
-.main-label {
-    border-left-color: dodgerblue;
-    border-left-style: solid;
-    border-left-width: 4px;
-}
 
 .dodgerblue {
     color: dodgerblue !important;

@@ -8,11 +8,44 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
 
 })
 
-.controller('dashboardCtrl', function ($scope) {
+.controller('menuCtrl', function ($scope, $mdSidenav) {
     $scope.toggleSidenav = function(menuId) {
+        console.log('click....');
         $mdSidenav(menuId).toggle();
     };
-    console.log('...');
+    $scope.menu = [
+    {
+      link : '#/app',
+      title: 'Dashboard',
+      icon: 'dashboard'
+    },
+    {
+      link : '#/customers',
+      title: 'Clientes',
+      icon: 'group'
+    },
+    {
+      link : '',
+      title: 'Messages',
+      icon: 'message'
+    }
+  ];
+  $scope.admin = [
+    {
+      link : '',
+      title: 'Trash',
+      icon: 'delete'
+    },
+    {
+      link : 'showListBottomSheet($event)',
+      title: 'Settings',
+      icon: 'settings'
+    }
+  ];
+})
+
+.controller('dashboardCtrl', function ($scope) {
+    
 })
 
 .controller('accountCtrl', function ($scope, $state, $stateParams, accounts) {

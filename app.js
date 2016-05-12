@@ -39,39 +39,20 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
     $urlRouterProvider.otherwise('/');
      // main start
     $stateProvider
-      .state('main',{
-          url: '/',
-          views: {
-              'header': {
-                  templateUrl: '/templates/partials/header.html',
-                  controller: 'headerCtrl'
-              },
-              'content': {
-                  templateUrl: '/templates/main.html',
-                  controller: 'mainCtrl' 
-              }
-          }
-      })
-      .state('login', {
-          url: '/login',
-          views: {
-              'header': {
-                  templateUrl: '/templates/partials/header.html',
-                  controller: 'headerCtrl'
-              },
-              'content': {
-                  templateUrl: '/templates/login.html',
-                  controller: 'loginCtrl' 
-              }
-          }
-      })
+      
       // app start
       .state('app', {
           url: '/app',
           views: {
-              // the main template will be placed here (relatively named)
-              'content': { templateUrl: '/templates/partials/app.html' },
-              'columnOne@app': { template: 'Look I am a column!', controller: 'dashboardCtrl' }
+              'content': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
+              'columnOne@app': { templateUrl: '/templates/invoices.html', controller: 'invoicesCtrl' }
+          }
+      })
+      .state('customers', {
+          url: '/customers',
+          views: {
+              'content': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
+              'columnOne@customers': { templateUrl: '/templates/customers.html', controller: 'customersCtrl' }
           }
       })
       .state('app.profiles', {  // listado de usuarios del sistema
@@ -110,15 +91,7 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
               }
           }
       })
-      .state('app.customers', {
-          url: 'customers',
-          views: {
-              'content@': {
-                  templateUrl: 'templates/customers.html',
-                  controller: 'customersCtrl'
-              }
-          }
-      })
+      
       .state('app.suppliers', {
           url: 'suppliers',
           views: {
@@ -152,6 +125,32 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
               'content@': {
                   templateUrl: 'templates/products.html',
                   controller: 'productsCtrl'
+              }
+          }
+      })
+      .state('main',{
+          url: '/',
+          views: {
+              'header': {
+                  templateUrl: '/templates/partials/header.html',
+                  controller: 'headerCtrl'
+              },
+              'content': {
+                  templateUrl: '/templates/main.html',
+                  controller: 'mainCtrl' 
+              }
+          }
+      })
+      .state('login', {
+          url: '/login',
+          views: {
+              'header': {
+                  templateUrl: '/templates/partials/header.html',
+                  controller: 'headerCtrl'
+              },
+              'content': {
+                  templateUrl: '/templates/login.html',
+                  controller: 'loginCtrl' 
               }
           }
       });
