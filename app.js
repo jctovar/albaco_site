@@ -35,7 +35,7 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
     })
 })
   
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
      // main start
     $stateProvider
@@ -56,12 +56,9 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
           }
       })
       .state('app.profiles', {  // listado de usuarios del sistema
-          url: '/app/profiles',
+          url: '/profiles',
           views: {
-              'content@app': {
-                  templateUrl: 'templates/profiles.html',
-                  controller: 'profilesCtrl'
-              }
+              'columnOne@app': { templateUrl: '/templates/invoices.html', controller: 'invoicesCtrl' }
           }
       })
       .state('app.my', {
@@ -155,4 +152,4 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
           }
       });
  
-}]);
+});
