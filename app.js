@@ -118,7 +118,7 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
           url: '/',
           views: {
               'content': {
-                  templateUrl: '/templates/main.html',
+                  templateUrl: '/templates/main/main.html',
                   controller: 'mainCtrl' 
               }
           }
@@ -127,7 +127,7 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
           url: 'login',
           views: {
               'content@': {
-                  templateUrl: 'templates//main/login.html',
+                  templateUrl: 'templates/main/login.html',
                   controller: 'loginCtrl'
               }
           }
@@ -136,7 +136,7 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
           url: 'login',
           views: {
               'content@': {
-                  templateUrl: 'templates//main/login.html',
+                  templateUrl: 'templates/main/login.html',
                   controller: 'loginCtrl'
               }
           }
