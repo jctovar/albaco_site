@@ -23,13 +23,12 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
 
 .controller('menuCtrl', function ($scope, $mdSidenav) {
     $scope.toggleSidenav = function(menuId) {
-        console.log('click....');
         $mdSidenav(menuId).toggle();
     };
     $scope.menu = [
     {
-      link : '#/app',
-      title: 'Dashboard',
+      link : '#/dashboard',
+      title: 'Panel',
       icon: 'dashboard'
     },
     {
@@ -38,21 +37,51 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
       icon: 'group'
     },
     {
-      link : '',
-      title: 'Messages',
-      icon: 'message'
+      link : '#/suppliers',
+      title: 'Proveedores',
+      icon: 'local_shipping'
+    },
+    {
+      link : '#/profiles',
+      title: 'Usuarios',
+      icon: 'supervisor_account'
+    },
+    {
+      link : '#/stores',
+      title: 'Almacenes',
+      icon: 'store'
+    },
+    {
+      link : '#/categories',
+      title: 'Categorias',
+      icon: 'label'
+    },
+    {
+      link : '#/products',
+      title: 'Productos',
+      icon: 'shopping_cart'
+    },
+    {
+      link : '#/invoices',
+      title: 'Notas',
+      icon: 'receipt'
     }
   ];
   $scope.admin = [
     {
-      link : '',
-      title: 'Trash',
-      icon: 'delete'
+      link : '#/my',
+      title: 'Mi perfil',
+      icon: 'face'
+    },
+    {
+      link : '#/password',
+      title: 'Contraseña',
+      icon: 'lock'
     },
     {
       link : 'showListBottomSheet($event)',
-      title: 'Settings',
-      icon: 'settings'
+      title: 'Cuenta',
+      icon: 'lock'
     }
   ];
 })
@@ -189,6 +218,17 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
     
     var query = invoices.get({ accountid: sessionStorage.account_id }, function () {
         $scope.items = query.invoices;
+    });
+})
+
+.controller('storesCtrl', function ($scope, stores) {
+    $scope.openMenu = function($mdOpenMenu, ev) {
+      originatorEv = ev;
+      $mdOpenMenu(ev);
+    };
+    
+    var query = stores.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.items = query.stores;
     });
 })
 
