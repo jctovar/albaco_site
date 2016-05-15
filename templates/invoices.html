@@ -5,7 +5,7 @@
   <md-content>
     <md-subheader class="md-primary">Catalogo de notas disponibles</md-subheader>
     <md-list flex layout-padding>
-        <md-list-item class="md-3-line secondary-button-padding" ng-repeat="item in items | filter: data.searchQuery">
+        <md-list-item md-ink-ripple class="md-3-line secondary-button-padding" ng-repeat="item in items | filter: data.searchQuery">
           <div class="md-list-item-text" layout="column">
             <h3 class="dodgerblue">{{ item.sale_id }} - {{ item.customer_name | uppercase }}</h3>
             <h4>{{ item.status_id }} {{ item.sale_total | currency }}&nbsp;</h4>

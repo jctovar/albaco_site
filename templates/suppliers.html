@@ -5,7 +5,7 @@
   <md-content>
     <md-subheader class="md-primary">Catalogo de proveedores activos</md-subheader>
     <md-list flex layout-padding>
-        <md-list-item class="md-2-line secondary-button-padding" ng-repeat="item in items | filter: data.searchQuery">
+        <md-list-item md-ink-ripple class="md-2-line secondary-button-padding" ng-repeat="item in items | filter: data.searchQuery">
           <div class="md-list-item-text" layout="column">
             <h3 class="dodgerblue">{{ item.supplier_name | uppercase }}</h3>
             <p>{{ item.supplier_address_1 | uppercase }} {{ item.supplier_address_2 | uppercase }}</p>
