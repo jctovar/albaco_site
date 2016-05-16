@@ -1,8 +1,4 @@
-angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directives', 'base64',  'main.filters'])
-
-.controller('headerCtrl', function ($scope) {
-    
-})
+angular.module('main.controllers', ['ngMessages', 'main.auth', 'main.models', 'main.directives', 'base64',  'main.filters'])
  
 .controller('mainCtrl', function ($scope, $state) {
     $scope.openMenu = function($mdOpenMenu, ev) {
@@ -79,15 +75,21 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
       icon: 'lock'
     },
     {
-      link : 'showListBottomSheet($event)',
+      link : '#/account',
       title: 'Cuenta',
       icon: 'lock'
     }
   ];
 })
 
-.controller('dashboardCtrl', function ($scope) {
+.controller('dashboardCtrl', function ($scope, $kookies) {
+    var now = new Date();
+        now.setDate(now.getDate() + 1);
     
+        //$cookies.NameOfMyCookie = "Hola";
+        
+        $kookies.set("NameCookie", "angularjs", {expires: 1});
+        console.log($kookies.get("NameCookie"));
 })
 
 .controller('accountCtrl', function ($scope, $state, $stateParams, accounts) {
@@ -143,11 +145,13 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
     };
 })
 
-.controller('customersCtrl', function ($scope, $mdDialog, customers) {
+.controller('customersCtrl', function ($scope, $cookies, $location, $mdDialog, customers) {
     $scope.openMenu = function($mdOpenMenu, ev) {
       originatorEv = ev;
       $mdOpenMenu(ev);
     };
+    
+    console.log('...' + $cookies.get("NameOfMyCookie"));
     
     var query = customers.get({ accountid: sessionStorage.account_id }, function () {
         $scope.items = query.customers;
@@ -172,6 +176,22 @@ angular.module('main.controllers', ['ngMessages', 'main.models', 'main.directive
                 .ok('Got it!')
                 .targetEvent(ev)
             );
+    };
+    
+    $scope.delete = function(index, ev) {
+        var confirm = $mdDialog.confirm()
+            .title('Esta seguro de eliminar el elemento?')
+            .textContent('El registro sera eliminado permanentemente.')
+            .ok('Si')
+            .cancel('No');
+            $mdDialog.show(confirm).then(function() {
+                var item = $scope.items[index];
+                console.log('Record deleted successfully!' + item.customer_id);
+                $scope.status = 'Record deleted successfully!';
+                }, function() {
+                console.log('You decided to keep your record.')    
+                $scope.status = 'You decided to keep your record.';
+            });
     };
 })
 

@@ -1,4 +1,4 @@
-angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
+angular.module('starter', ['ui.router', 'ngKookies', 'ngResource', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
 .config(function($mdThemingProvider) {
     var customBlueMap = 		$mdThemingProvider.extendPalette('light-blue', {
         'contrastDefaultColor': 'light',
@@ -19,7 +19,14 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
 .config(function () {
   sessionStorage.account_id = 1;
   sessionStorage.profile_id = 1;
+  
 })
+
+.config(['$kookiesProvider', 
+    function ($kookiesProvider) {
+        $kookiesProvider.config.raw = true;
+    }
+])
 
 .run(function ($rootScope, $state) {
   //al cambiar de rutas
@@ -28,6 +35,7 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
       //la cuál hemos inyectado en la acción run de la aplicación
       //auth.checkStatus();
   //})
+  
 })
   
 .config(function ($stateProvider, $urlRouterProvider) {
@@ -35,18 +43,7 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
      // main start
     $stateProvider
       
-      // app start
-      .state('app.account', {   // datos de la empresa
-          url: 'account',
-          views: {
-              'content@': {
-                  templateUrl: 'templates/account.html',
-                  controller: 'accountCtrl'
-              }
-          }
-      })
-      
-      
+      // app start 
       .state('app',{
           url: '/',
           views: {
@@ -94,7 +91,14 @@ angular.module('starter', ['ui.router', 'ngResource', 'ngSanitize', 'ngMaterial'
           url: 'dashboard',
           views: {
               'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.dashboard': { templateUrl: '/templates/dashboard.html', controller: 'invoicesCtrl' }
+              'columnOne@app.dashboard': { templateUrl: '/templates/dashboard.html', controller: 'dashboardCtrl' }
+          }
+      })
+      .state('app.account', {   // datos de la empresa
+          url: 'account',
+          views: {
+              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
+              'columnOne@app.account': { templateUrl: '/templates/account.html', controller: 'accountCtrl' }
           }
       })
       .state('app.customers', {
