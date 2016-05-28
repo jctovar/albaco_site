@@ -1,5 +1,5 @@
 {
-  "name": "albaco_site",
+  "name": "albaco pos",
   "homepage": "https://github.com/jctovar/albaco_site",
   "authors": [
     "Juan Carlos Tovar Gomez <jctovar@gmail.com>"
@@ -20,14 +20,11 @@
   ],
   "dependencies": {
     "angular-base64": "^2.0.5",
-    "angular-cookies": "^1.5.5",
     "angular-material-icons": "^0.7.0",
     "angular-material": "^1.0.8",
     "angular-gravatar": "^0.4.2",
     "angular-sanitize": "^1.5.5",
-    "angular-resource": "^1.5.5",
-    "angular-ui-router": "^0.2.18",
-    "pdfmake": "^0.1.20",
-    "ngkookies": "^0.2.0"
+    "angular-resource": "^1.5.6",
+    "pdfmake": "^0.1.20"
   }
 }

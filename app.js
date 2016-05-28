@@ -1,4 +1,4 @@
-angular.module('starter', ['ui.router', 'ngKookies', 'ngResource', 'ngSanitize', 'ngMaterial', 'ngMdIcons', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
+angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngMessages', 'ngMaterial', 'ngAria', 'ui.gravatar', 'main.controllers'])
 .config(function($mdThemingProvider) {
     var customBlueMap = 		$mdThemingProvider.extendPalette('light-blue', {
         'contrastDefaultColor': 'light',
