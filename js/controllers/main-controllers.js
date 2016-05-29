@@ -550,7 +550,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
 })
 
-.controller('myCtrl', function ($scope, profiles) {
+.controller('MyCtrl', function ($scope, profiles) {
     var query = profiles.get({ accountid: sessionStorage.account_id, profileid: sessionStorage.profile_id }, function () {
         $scope.profile = query.profiles[0];
     });

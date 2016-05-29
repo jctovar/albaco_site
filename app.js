@@ -100,7 +100,7 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         })
         .when('/my', {
           templateUrl: 'templates/profile.html',
-          controller: 'ProfileCtrl'
+          controller: 'MyCtrl'
         })
         .when('/password', {
           templateUrl: 'templates/password.html',
