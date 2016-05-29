@@ -11,7 +11,7 @@ angular.module('main.auth', ['ngResource'])
                     sessionStorage.profile_name = query.login[0].profile_name;
                     sessionStorage.account_id = query.login[0].account_id;
                     //mandamos al dashboard
-                    $location.path("/dashboard");
+                    $location.path("dashboard");
                 } else {
                     console.log('error, not found');
                     $location.path("/login");
