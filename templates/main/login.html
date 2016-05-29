@@ -1,28 +1,31 @@
 <div layout="column" layout-fill layout-align="center center">
   <div layout-align="center" class="md-padding" layout="row">
-    <md-content flex layout="column" class="page">
-          <h1 class="title">albaco</h1>
-          <md-subheader class="md-primary">Formulario de ingreso</md-subheader>
-          <form name="loginForm">
+    <md-content flex layout="column">
+          <h1 class="title">Albaco</h1>
+          <form name="form">
             <md-input-container class="md-block" flex-gt-xs>
               <label>Usuario</label>
-              <md-icon class="md-primary md-hue-3"> person </md-icon>
-              <input ng-model="account_username" type="text" required autofocus>
+              <input name="user_email" ng-model="user_email" type="email" required autofocus>
+              <div ng-messages="form.user_email.$error">
+                  <div ng-message="required">Campo requerido.</div>
+              </div>
             </md-input-container>
             <md-input-container class="md-block" flex-gt-xs>
               <label>Contraseña</label>
-              <md-icon class="md-warn md-hue-3"> vpn_key </md-icon>
-              <input ng-model="account_password" type="password" required>
+              <input name="user_password" ng-model="user_password" type="password" required>
+              <div ng-messages="form.user_password.$error">
+                  <div ng-message="required">Es necesario.</div>
+              </div>
             </md-input-container>
           </form>
           <section layout-align="center" layout="row">
-            <md-button flex ng-disabled="!loginForm.$valid" class="md-raised md-primary md-hue-2" ng-click="login()">Ingresar</md-button>
+            <md-button flex ng-disabled="!form.$valid" class="md-raised md-primary md-hue-2" ng-click="login()">Ingresar</md-button>
           </section>
           <section layout-align="center" layout="row">
             <p>Todavia no tienes cuenta, registrate</p> 
           </section>
           <section layout-align="center" layout="row">
-            <a class="small" ng-href="#/"><md-icon> keyboard_backspace </md-icon> regresar a inicio</a> 
+            <a class="small" ng-href="#/"><md-icon md-svg-icon="arrow_back"></md-icon> regresar a inicio</a> 
           </section>
     </md-content>
   </div>

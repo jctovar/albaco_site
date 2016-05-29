@@ -1,0 +1,64 @@
+  <!-- sidebar -->
+ <div ng-controller="SideCtrl"> 
+  <md-sidenav layout-fill layout="column" class="md-sidenav-left md-whiteframe-z3" style="height: calc(100vh);" md-component-id="left">
+      <md-toolbar class="md-tall md-hue-2">
+        <span flex></span>
+        <div layout="column" layout-align="center center" class="md-toolbar-tools-bottom inset">
+          <md-list>
+            <md-list-item>
+              <div class="md-list-item-text" layout="column" layout-align="center center">
+                <img gravatar-src="user_email" gravatar-size="60" class="md-avatar" alt="{{ user_email }}">
+                <span></span>
+                <div class="small">{{ user_name }}</div>
+                <div class="small">{{ user_email }}</div>
+              </div>
+            </md-list-item>
+          </md-list>
+        </div>
+      </md-toolbar>
+      <md-list>
+        <md-item>
+            <a>
+            <md-list-item md-ink-ripple layout="row" layout-align="start center" ng-click="go('dashboard')">
+              <div class="inset">
+              <md-icon md-svg-icon="dashboard"></md-icon>
+              </div>
+                <div class="inset">Inicio</div>
+            </md-list-item>
+            </a>
+        </md-item>
+        <md-item ng-repeat="item in menu">
+          <a>
+            <md-list-item md-ink-ripple layout="row" layout-align="start center" ng-click="go(item.navigation_url)">
+              <div class="inset">
+                <md-icon md-svg-icon="{{item.navigation_icon}}"></md-icon>
+              </div>
+              <div class="inset">{{item.navigation_name}}
+              </div>
+            </md-list-item>
+          </a>
+        </md-item>
+      <md-divider></md-divider>
+      <md-subheader>Administración</md-subheader>
+        <md-item ng-repeat="item in admin">
+            <md-list-item md-ink-ripple layout="row" layout-align="start center" ng-click="go(item.link)">
+              <div class="inset">
+                </ng-md-icon><md-icon md-svg-icon="{{item.icon}}"></md-icon>
+              </div>
+              <div class="inset">{{item.title}}
+              </div>
+            </md-list-item>
+      </md-item>
+      <md-item>
+            <a>
+            <md-list-item md-ink-ripple layout="row" layout-align="start center" ng-click="logout()">
+              <div class="inset">
+              <md-icon md-svg-icon="off"></md-icon>
+              </div>
+                <div class="inset">Cerrar sesión</div>
+            </md-list-item>
+            </a>
+        </md-item>
+    </md-list>
+  </md-sidenav>
+ </div>

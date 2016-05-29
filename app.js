@@ -1,167 +1,146 @@
-angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngMessages', 'ngMaterial', 'ngAria', 'ui.gravatar', 'main.controllers'])
-.config(function($mdThemingProvider) {
-    var customBlueMap = 		$mdThemingProvider.extendPalette('light-blue', {
-        'contrastDefaultColor': 'light',
-        'contrastDarkColors': ['50'],
-        '50': 'ffffff'
-    });
-    $mdThemingProvider.definePalette('customBlue', customBlueMap);
-    $mdThemingProvider.theme('default')
-        .primaryPalette('customBlue', {
-        'default': '500',
-        'hue-1': '50'
-        })
-        .accentPalette('pink');
-    $mdThemingProvider.theme('input', 'default')
-            .primaryPalette('grey')
-})
+angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngMessages', 'ngMaterial', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
 
-.config(function () {
-  sessionStorage.account_id = 1;
-  sessionStorage.profile_id = 1;
-  
-})
+.config(function($mdIconProvider, $mdThemingProvider) {
+      // Configure URLs for icons specified by [set:]id.
+      $mdIconProvider
+          .icon('add', 'img/icons/ic_add_black_24px.svg')
+          .icon('more_vert', 'img/icons/ic_more_vert_black_24px.svg')    // Register a specific icon (by name)
+          .icon('check', 'img/icons/ic_done_black_24px.svg')
+          .icon('arrow_back', 'img/icons/ic_arrow_back_black_24px.svg')
+          .icon('search', 'img/icons/ic_search_black_24px.svg')
+          .icon('edit', 'img/icons/ic_mode_edit_black_24px.svg')
+          .icon('delete', 'img/icons/ic_delete_forever_black_24px.svg')
+          .icon('clear', 'img/icons/ic_clear_black_24px.svg')
+          .icon('menu', 'img/icons/ic_menu_black_24px.svg')
+          .icon('users', 'img/icons/ic_supervisor_account_black_24px.svg')
+          .icon('face', 'img/icons/ic_face_black_24px.svg')
+          .icon('note', 'img/icons/ic_note_black_24px.svg')
+          .icon('dashboard', 'img/icons/ic_dashboard_black_24px.svg')
+          .icon('settings', 'img/icons/ic_settings_black_24px.svg')
+          .icon('person', 'img/icons/ic_person_black_24px.svg')
+          .icon('view_agenda', 'img/icons/ic_view_agenda_black_24px.svg')
+          .icon('group', 'img/icons/ic_group_black_24px.svg')
+          .icon('off', 'img/icons/ic_highlight_off_black_24px.svg')
+          .icon('lock', 'img/icons/ic_lock_black_24px.svg')
+          .icon('view_comfy', 'img/icons/ic_view_comfy_black_24px.svg')
+          .icon('local_shipping', 'img/icons/ic_local_shipping_black_24px.svg')
+          .icon('lock', 'img/icons/ic_lock_black_24px.svg')
+          .icon('store', 'img/icons/ic_store_black_24px.svg')
+          .icon('receipt', 'img/icons/ic_receipt_black_24px.svg')
+          .icon('shopping_cart', 'img/icons/ic_shopping_cart_black_24px.svg')
+  })
 
-.config(['$kookiesProvider', 
-    function ($kookiesProvider) {
-        $kookiesProvider.config.raw = true;
-    }
-])
-
-.run(function ($rootScope, $state) {
-  //al cambiar de rutas
-  //$rootScope.$on('$routeChangeStart', function() {
-      //llamamos a checkStatus, el cual lo hemos definido en la factoria auth
-      //la cuál hemos inyectado en la acción run de la aplicación
-      //auth.checkStatus();
-  //})
-  
-})
-  
-.config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/');
-     // main start
-    $stateProvider
+  .run(function ($rootScope, $location, auth, $http, $templateCache) {
+      //al cambiar de rutas
+      $rootScope.$on('$routeChangeStart', function()
+      {
+          //llamamos a checkStatus, el cual lo hemos definido en la factoria auth
+          //la cuál hemos inyectado en la acción run de la aplicación
+          auth.checkStatus();
+      })
       
-      // app start 
-      .state('app',{
-          url: '/',
-          views: {
-              'content': {
-                  templateUrl: '/templates/main/main.html',
-                  controller: 'mainCtrl' 
-              }
-          }
-      })
-      .state('app.login', {
-          url: 'login',
-          views: {
-              'content@': {
-                  templateUrl: 'templates/main/login.html',
-                  controller: 'loginCtrl'
-              }
-          }
-      })
-      .state('app.signin', {
-          url: 'login',
-          views: {
-              'content@': {
-                  templateUrl: 'templates/main/login.html',
-                  controller: 'loginCtrl'
-              }
-          }
-      })
-      .state('app.about', {
-          url: 'about',
-          views: {
-              'content@': {
-                  templateUrl: 'templates/main/about.html'
-              }
-          }
-      })
-      .state('app.contact', {
-          url: 'contact',
-          views: {
-              'content@': {
-                  templateUrl: 'templates/main/contact.html'
-              }
-          }
-      })
-      .state('app.dashboard', {
-          url: 'dashboard',
-          views: {
-              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.dashboard': { templateUrl: '/templates/dashboard.html', controller: 'dashboardCtrl' }
-          }
-      })
-      .state('app.account', {   // datos de la empresa
-          url: 'account',
-          views: {
-              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.account': { templateUrl: '/templates/account.html', controller: 'accountCtrl' }
-          }
-      })
-      .state('app.customers', {
-          url: 'customers',
-          views: {
-              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.customers': { templateUrl: '/templates/customers.html', controller: 'customersCtrl' }
-          }
-      })
-      .state('app.suppliers', {
-          url: 'suppliers',
-          views: {
-              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.suppliers': { templateUrl: '/templates/suppliers.html', controller: 'suppliersCtrl' }
-          }
-      })
-      .state('app.profiles', {  // listado de usuarios del sistema
-          url: 'profiles',
-          views: {
-              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.profiles': { templateUrl: '/templates/profiles.html', controller: 'profilesCtrl' }
-          }
-      })
-      .state('app.categories', {
-          url: 'categories',
-          views: {
-              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.categories': { templateUrl: '/templates/categories.html', controller: 'categoriesCtrl' }
-          }
-      })
-      .state('app.products', {
-          url: 'products',
-          views: {
-              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.products': { templateUrl: '/templates/products.html', controller: 'productsCtrl' }
-          }
-      })
-      .state('app.stores', {
-          url: 'stores',
-          views: {
-              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.stores': { templateUrl: '/templates/stores.html', controller: 'storesCtrl' }
-          }
-      })
-      .state('app.invoices', {
-          url: 'invoices',
-          views: {
-              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.invoices': { templateUrl: '/templates/invoices.html', controller: 'invoicesCtrl' }
-          }
-      })
-      .state('app.my', {
-          url: 'my',
-          views: {
-              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.my': { templateUrl: '/templates/my.html', controller: 'myCtrl' }
-          }
-      })
-      .state('app.password', {
-          url: 'password',
-          views: {
-              'content@': { templateUrl: '/templates/partials/app.html', controller: 'menuCtrl' },
-              'columnOne@app.password': { templateUrl: '/templates/password.html', controller: 'passwordCtrl' }
-          }
+      $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+          $rootScope.title = current.$$route.title;
       });
-});
+      
+      // Pre-fetch icons sources by URL and cache in the $templateCache...
+      // subsequent $http calls will look there first.
+      var urls = ['img/icons/ic_more_vert_black_24px.svg', 'img/icons/ic_mode_edit_black_24px.svg', 'img/icons/ic_delete_forever_black_24px.svg'];
+      angular.forEach(urls, function(url) {
+        $http.get(url, {cache: $templateCache});
+      });
+  })
+
+  .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+      $routeProvider
+        .when('/stocks', {
+          title: 'Entradas',
+          templateUrl: 'templates/stocks.html',
+          controller: 'StocksCtrl'
+        })
+        .when('/invoices', {
+          title: 'Notas',
+          templateUrl: 'templates/invoices.html',
+          controller: 'InvoicesCtrl'
+        })
+        .when('/products', {
+          title: 'Productos',
+          templateUrl: 'templates/products.html',
+          controller: 'ProductsCtrl'
+        })
+        .when('/suppliers', {
+          title: 'Proveedores',
+          templateUrl: 'templates/suppliers.html',
+          controller: 'SuppliersCtrl'
+        })
+        .when('/profiles', {
+          title: 'Usuarios',
+          templateUrl: 'templates/profiles.html',
+          controller: 'ProfilesCtrl'
+        })
+        .when('/stores', {
+          title: 'Almacenes',
+          templateUrl: 'templates/stores.html',
+          controller: 'StoresCtrl'
+        })
+        .when('/customers', {
+          title: 'Clientes',
+          templateUrl: 'templates/customers.html',
+          controller: 'CustomersCtrl'
+        })
+        .when('/categories', {
+          title: 'Categorías',
+          templateUrl: 'templates/categories.html',
+          controller: 'CategoriesCtrl'
+        })
+        .when('/dashboard', {
+          title: 'Consola',
+          templateUrl: 'templates/dashboard.html',
+          controller: 'DashboardCtrl'
+        })
+        .when('/my', {
+          templateUrl: 'templates/profile.html',
+          controller: 'ProfileCtrl'
+        })
+        .when('/password', {
+          templateUrl: 'templates/password.html',
+          controller: 'PasswordCtrl'
+        })
+        .when('/account', {
+          templateUrl: 'templates/account.html',
+          controller: 'AccountCtrl'
+        })
+        .when('/', {
+          title: 'Inicio',
+          templateUrl: 'templates/main/main.html',
+          controller: 'MainCtrl'
+        })
+        .when('/login', {
+          title: 'Autentificación',
+          templateUrl: 'templates/main/login.html',
+          controller: 'LoginCtrl'
+        })
+        .when('/about', {
+          title: 'Acerca del sitio',
+          templateUrl: 'templates/main/about.html'
+        })
+        .when('/credits', {
+          title: 'Creditos',
+          templateUrl: 'templates/main/credits.html'
+        })
+        .when('/contact', {
+          title: 'Contacto',
+          templateUrl: 'templates/main/contact.html'
+        })
+        .otherwise({
+          redirectTo: '/',
+          templateUrl: 'templates/main/main.html',
+          controller: 'MainCtrl'
+        });
+  }])
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+*/

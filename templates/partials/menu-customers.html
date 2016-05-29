@@ -1,0 +1,17 @@
+<md-menu ng-controller="MenuCtrl" md-position-mode="target-right target">
+    <md-button aria-label="Menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+        <md-icon md-svg-icon="more_vert"></md-icon>
+    </md-button>
+    <md-menu-content width="4">
+        <md-menu-item>
+        <md-button ng-click="edit(item.customer_id)">
+            <div layout="row"><p flex>Editar cliente</p><md-icon md-svg-icon="edit"></md-icon></div>
+        </md-button>
+        </md-menu-item>
+        <md-menu-item>
+        <md-button ng-click="delete(item.customer_id)">
+            <div layout="row"><p flex>Eliminar cliente</p><md-icon md-svg-icon="delete"></md-icon></div>
+        </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>

@@ -1,50 +1,64 @@
-<md-toolbar class="header md-whiteframe-2dp" layout="row">
+<md-toolbar layout="row" class="md-whiteframe-3dp">
   <div class="md-toolbar-tools">
-      <md-menu md-position-mode="target-right target">
-          <md-button aria-label="Menu" class="md-icon-button" md-ink-ripple hide-gt-xs ng-click="openMenu($mdOpenMenu, $event)">
-              <md-icon> menu </md-icon>
-          </md-button>
+    <md-menu md-position-mode="target-right target">
+        <md-button aria-label="Menu" class="md-icon-button" md-ink-ripple hide-gt-xs ng-click="openMenu($mdOpenMenu, $event)">
+            <md-icon md-svg-icon="menu"></md-icon>
+        </md-button>
           <md-menu-content width="4">
-              <md-menu-item>
-              <md-button ng-click="go('login')">
-                  <div layout="row"><p flex>Ingresar</p></div>
-              </md-button>
-              </md-menu-item>
-              <md-menu-item>
-              <md-button ng-click="go('signin')">
-                  <div layout="row"><p flex>Registro</p></div>
-              </md-button>
-              </md-menu-item>
-          </md-menu-content>
-      </md-menu>
-      <h2> albaco pos </h2>
-      <span flex></span>
-      <span hide-xs>
-          <md-button md-ink-ripple aria-label="ingresar" ng-href="#/login"> ingresar </md-button>
-          <md-button md-ink-ripple aria-label="registro" ng-href="#/login"> registro </md-button>
-      </span>
+            <md-menu-item>
+            <md-button ng-click="go('login')">
+                <div layout="row"><p flex>Ingresar</p></div>
+            </md-button>
+            </md-menu-item>
+            <md-menu-item>
+            <md-button ng-click="go('signin')">
+                <div layout="row"><p flex>Registro</p></div>
+            </md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu> 
+    <h3>albaco pos</h3>
+    <span flex></span>
+    <span hide-xs>
+      <md-button md-ink-ripple aria-label="registro" ng-href="#/login"> registro </md-button>
+      <md-button md-ink-ripple aria-label="ingresar" ng-href="#/login"> ingresar </md-button>  
+    </span>
   </div>
 </md-toolbar>
-<!-- Main Container -->
-<div layout="column" layout-fill class="page">
-  <div flex="50" class="big-image">
-    <div layout="row">
-      <h1 class="title">albaco</h1>
+<md-content>
+  <div layout-align="space-between stretch" layout="column">
+    <div class="jumbotron" class="md-whiteframe-1dp">
+      <div class="jumbotron-text">
+        <h1 class="title">albaco</h1>
+      </div>
+    </div>
+    <div layout="row" class="form md-whiteframe-2dp" layout-align="center stretch">
+      <div flex="66" layout-padding>
+        loren ipsum
+      </div>
+    </div>
+    <div layout="row" layout-padding layout-align="center">
+        <div flex="66" class="body">
+          <div layout="row" layout-align="center">
+            <p class="slogan" >albaco, un POS enfocado a la nube</p>
+          </div>
+          <div layout="row" layout-align="center">
+            <img src="/img/albaco.png" class="albaco-img" alt="logo">
+          </div>
+          <ul>
+            <li>Ligero</li>
+            <li>Android, iOS, Windows</li>
+            <li>Administración centralizada</li>
+          </ul>
+        </div>
+    </div>
+    <div class="prefooter" layout="row" layout-padding layout-align="center">
+        <div flex="66" layout-align="center">
+          <a href="#/about">Acerca</a> | <a href="#/contact">Contacto</a>
+        </div>
+    </div>
+    <div class="footer">
+      <div ng-include=" 'templates/partials/footer.html' "></div>
     </div>
   </div>
-  <div flex="50">
-    <div layout="row" layout-align="center">
-      <p class="slogan" >albaco, un POS enfocado a la nube</p>
-    </div>
-    <div layout="row" layout-align="center">
-      <img src="/images/albaco.png" class="albaco-img" alt="logo">
-    </div>
-    <div layout="row" class="md-padding" layout-align="center">
-        <ul>
-          <li>Ligero</li>
-          <li>Android, iOS, Windows</li>
-          <li>Administración centralizada</li>
-        </ul>
-    </div> 
-  </div>
-</div>
+<md-content>

@@ -1,42 +1,36 @@
-<div layout="column" layout-fill>  
-  <div id="header" ng-include=" 'templates/header.html' "></div>
-  <md-content layout-align="center" class="md-padding" layout="row">
-    <md-list flex="80">
-      <md-subheader class="md-no-sticky">existenciass</md-subheader>
-        <md-list-item class="md-2-line secondary-button-padding" ng-repeat="item in items | filter: data.searchQuery" ng-href="#/products/{{item.category_id}}">
-          <div class="md-list-item-text" layout="column">
-            <h3 class="dodgerblue">{{ item.category_name | uppercase }}</h3>
-            <h4>{{ item.category_description | uppercase }}</h4>
-            <p>{{ item.product_count }} lineas</p>
-          </div>
-          <md-menu md-position-mode="target-right target">
-            <md-button aria-label="Menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
-              <md-icon> menu </md-icon>
-            </md-button>
-            <md-menu-content width="4">
-              <md-menu-item>
-                <md-button ng-click="edit($index)">
-                  <div layout="row"><p flex>Editar existencias</p><md-icon> edit </md-icon></div>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="enable($index)">
-                  <div layout="row"><p flex>Ocultar existencias</p><md-icon> visibility </md-icon></div>
-                </md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="delete($index)">
-                  <div layout="row"><p flex>Eliminar existencias</p><md-icon> delete </md-icon></div>
-                </md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
-          <md-divider></md-divider>
-        </md-list-item>
-    </md-list>
-  </md-content>
-  <md-button class="md-fab md-fab-bottom-right" ng-click="add()">        
-    <md-icon> add </md-icon>
-    <md-tooltip md-direction="top"> Agregar existencias </md-tooltip>
-  </md-button>        
+<div ng-include=" 'templates/partials/toolbar.html' "></div>
+<div flex layout="row">
+  <div ng-include=" 'templates/partials/sidebar.html' "></div>
+  <div flex layout="column">
+    <div md-scroll-shrink>
+        <md-input-container layout-margin class="md-icon-float md-block">
+            <label>Buscar...</label>
+            <md-icon md-svg-icon="search"></md-icon>
+            <input ng-model="searchQuery" md-detect-hidden md-select-on-focus autofocus>
+        </md-input-container>
+    </div>
+    <md-content>
+      <md-progress-linear class="md-warn" md-mode="indeterminate" ng-hide="bar"> Cargando... </md-progress-linear>
+      <md-list>
+        <md-subheader>Entradas</md-subheader>
+          <md-list-item md-ink-ripple class="md-3-line" ng-repeat="item in items | filter: searchQuery">
+            <div class="md-list-item-text" layout="column">
+              <h3 class="dodgerblue">{{ item.category_name | uppercase }}</h3>
+              <h4>{{ item.category_description | uppercase }}</h4>
+              <p>{{ item.product_count }} lineas</p>
+            </div>
+            <div class="md-secondary md-icon-button" ng-include=" 'templates/partials/menu-stocks.html' "></div>
+            <md-divider ng-if="!$last"></md-divider>
+          </md-list-item>
+      </md-list>
+    </md-content>
+    <md-button class="md-fab md-mini md-fab-top-right md-warn" ng-click="clear()" ng-disabled="!searchQuery">    
+      <md-icon md-svg-icon="clear" class="s18"></md-icon>
+      <md-tooltip md-direction="top"> Limpiar busqueda </md-tooltip>
+    </md-button>
+    <md-button class="md-fab md-fab-bottom-right" ng-click="add()">    
+      <md-icon md-svg-icon="add"></md-icon>
+      <md-tooltip md-direction="top"> Agregar </md-tooltip>
+    </md-button>
+  </div>  
 </div>

@@ -2,7 +2,14 @@ angular.module('main.models', ['ngResource'])
 .constant("server_config",{url : "https://goritec.com:3000", key : "84656ca7c7ccc6b44523a18b6bdf94140220bfc8"})
 
 .factory('login', function($resource, server_config) {
-	return $resource(server_config.url + '/login/:profileid', { account_key : server_config.key, id : '@_id' },
+	return $resource(server_config.url + '/login/:id/:password', { account_key : server_config.key, id : '@_id' },
+    {
+        'update': { method:'PUT' }
+    });
+})
+
+.factory('navigation', function($resource, server_config) {
+	return $resource(server_config.url + '/navigation/:id', { account_key : server_config.key, id : '@_id' },
     {
         'update': { method:'PUT' }
     });
@@ -58,6 +65,13 @@ angular.module('main.models', ['ngResource'])
 })
 
 .factory('products', function($resource, server_config) {
+	return $resource(server_config.url + '/products/:accountid/:produciId', { account_key : server_config.key, id : '@_id' },
+    {
+        'update': { method:'PUT' }
+    });
+})
+
+.factory('stocks', function($resource, server_config) {
 	return $resource(server_config.url + '/products/:accountid/:produciId', { account_key : server_config.key, id : '@_id' },
     {
         'update': { method:'PUT' }

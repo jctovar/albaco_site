@@ -25,11 +25,20 @@ a {
 .capitalize {
     text-transform: capitalize;
 }
-.big-image {
-    background-image: url("/images/background.jpg");
+.jumbotron {
+    background-image: url("img/background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    
+    color: white;
+}
+
+.jumbotron-text {
+    padding: 140px;
+}
+
+.form {
+    background-color: #028299;
+    color: whitesmoke;
 }
 
 .title {
@@ -58,25 +67,29 @@ a {
     margin-bottom: 80px;
 }
 
-
-
-
-
+.white {
+    color: white;
+}
 
 .dodgerblue {
     color: dodgerblue !important;
 }
 
-
-md-toolbar:not(.md-hue-1), .md-fab {
-  fill: #fff;
+md-icon svg {
+  fill: inherit;
 }
 
-md-toolbar input {
-    color: white !important;
-    margin-top: 22px !important;
-    background-color: dodgerblue !important;
-    padding-left: 10px !important;
-    border-radius: 5px !important;
+.s18 {
+  width: 18px;
+  height: 18px;
 }
 
+.s24 {
+  width: 24px;
+  height: 24px;
+}
+
+.s36 {
+  width: 36px;
+  height: 36px;
+}
