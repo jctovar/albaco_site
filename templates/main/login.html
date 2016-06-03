@@ -1,16 +1,19 @@
 <div layout="column" layout-fill layout-align="center center">
-  <div layout-align="center" class="md-padding" layout="row">
-    <md-content flex layout="column">
-          <h1 class="title">Albaco</h1>
+  <div layout="column" role="main">
+    <div layout-align="space-between stretch" layout="column">
+      <div layout="row" layout-padding layout-align="center">
+       <div flex="100">
+        <h1 class="title">Ingreso</h1>
+        <section layout="column" layout-align="center">
           <form name="form">
-            <md-input-container class="md-block" flex-gt-xs>
+            <md-input-container class="md-block">
               <label>Usuario</label>
               <input name="user_email" ng-model="user_email" type="email" required autofocus>
               <div ng-messages="form.user_email.$error">
                   <div ng-message="required">Campo requerido.</div>
               </div>
             </md-input-container>
-            <md-input-container class="md-block" flex-gt-xs>
+            <md-input-container class="md-block">
               <label>Contraseña</label>
               <input name="user_password" ng-model="user_password" type="password" required>
               <div ng-messages="form.user_password.$error">
@@ -18,15 +21,18 @@
               </div>
             </md-input-container>
           </form>
-          <section layout-align="center" layout="row">
-            <md-button flex ng-disabled="!form.$valid" class="md-raised md-primary md-hue-2" ng-click="login()">Ingresar</md-button>
-          </section>
-          <section layout-align="center" layout="row">
-            <p>Todavia no tienes cuenta, registrate</p> 
-          </section>
-          <section layout-align="center" layout="row">
-            <a class="small" ng-href="#/"><md-icon md-svg-icon="arrow_back"></md-icon> regresar a inicio</a> 
-          </section>
-    </md-content>
+        </section>
+        <section layout-align="center" layout="row">
+          <md-button ng-disabled="!form.$valid" class="md-raised md-primary md-hue-2" ng-click="login()" flex>Ingresar</md-button>
+        </section>
+        <section layout-align="center" layout="row">
+          <p>Todavia no tienes cuenta, registrate</p> 
+        </section>
+        <section layout-align="center" layout="row">
+          <a class="small" ng-href="#/"><md-icon md-svg-icon="arrow_back"></md-icon> regresar a inicio</a> 
+        </section>
+       </div>
+      </div>
+    </div>
   </div>
 </div>
