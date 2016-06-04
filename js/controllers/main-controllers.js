@@ -291,11 +291,11 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     }
     
     $scope.add = function () {
-        $location.path('/customer')
+        $location.path('supplier')
     }
     
     $scope.edit = function (index) {
-        $location.path('/customer/'+ index);
+        $location.path('supplier/'+ index);
     }
     
     $scope.delete = function(index, ev) {
@@ -333,6 +333,53 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
                 $location.path('/login')
             });
     };
+})
+
+.controller('AddSupplierCtrl', function ($scope, $location, $routeParams, $mdToast, suppliers) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              $scope.item.account_id = sessionStorage.account_id;
+              var result = stores.save($scope.item, function() {
+                  if (result.stores.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('suppliers')
+                  };
+              });            
+          } else {
+              $location.path('suppliers')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    }
+})
+
+.controller('EditSupplierCtrl', function ($scope, $location, $routeParams, $mdToast, suppliers) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = stores.update($scope.item, function() {
+                  if (result.stores.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('suppliers')
+                  };
+              });            
+          } else {
+              $location.path('suppliers')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+    
+    var query = suppliers.get({ accountid: sessionStorage.account_id, storeid: $routeParams.storeid }, function () {
+        $scope.item = query.suppliers[0];    
+    });
 })
 
 .controller('StoresCtrl', function ($scope, $location, $mdDialog, $mdToast, stores) {

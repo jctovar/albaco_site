@@ -70,8 +70,18 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         })
         .when('/suppliers', {
           title: 'Proveedores',
-          templateUrl: 'templates/suppliers.html',
+          templateUrl: 'templates/suppliers/suppliers.html',
           controller: 'SuppliersCtrl'
+        })
+        .when('/supplier', {
+          title: 'Nuevo proveedor',
+          templateUrl: 'templates/suppliers/supplier.html',
+          controller: 'AddSupplierCtrl'
+        })
+        .when('/supplier/:supplierid', {
+          title: 'Editar proveedor',
+          templateUrl: 'templates/suppliers/supplier.html',
+          controller: 'EditSupplierCtrl'
         })
         .when('/users', {
           title: 'Usuarios',
