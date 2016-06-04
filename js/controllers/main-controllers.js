@@ -64,7 +64,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
        
 })
 
-.controller('ProfilesCtrl', function ($scope, $location, $mdDialog, $mdToast, profiles) {
+.controller('UsersCtrl', function ($scope, $location, $mdDialog, $mdToast, profiles) {
     $scope.$on('$viewContentLoaded', function ($evt, data) {
         inito();
     });
@@ -75,11 +75,11 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     }
     
     $scope.add = function () {
-        $location.path('/profile')
+        $location.path('user')
     }
     
     $scope.edit = function (index) {
-        $location.path('/profile/'+ index);
+        $location.path('user/'+ index);
     }
     
     $scope.delete = function(index, ev) {
@@ -96,7 +96,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
     
     var del = function (id) {
-            customers.delete({ id: id })
+            profiles.delete({ profileid: id })
             .$promise.then(function (result) {
                 inito();
                 $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
@@ -117,6 +117,53 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
                 $location.path('/login')
             });
     };
+})
+
+.controller('AddUserCtrl', function ($scope, $location, $routeParams, $mdToast, profiles) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              $scope.item.account_id = sessionStorage.account_id;
+              var result = profiles.save($scope.item, function() {
+                  if (result.profiles.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('users')
+                  };
+              });            
+          } else {
+              $location.path('users')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    }
+})
+
+.controller('EditUserCtrl', function ($scope, $location, $routeParams, $mdToast, profiles) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = profiles.update($scope.item, function() {
+                  if (result.profiles.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('users')
+                  };
+              });            
+          } else {
+              $location.path('users')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+        
+    var query = profiles.get({ accountid: sessionStorage.account_id, profileid: $routeParams.userid }, function () {
+        $scope.item = query.profiles[0];    
+    });
 })
 
 .controller('CustomersCtrl', function ($scope, $location, $mdDialog, $mdToast, customers) {
@@ -326,7 +373,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
         $scope.counter++;
     };
     
-    var query = stores.get({accountid: sessionStorage.account_id, storeid: $routeParams.storeid},function() {
+    var query = stores.get({ accountid: sessionStorage.account_id, storeid: $routeParams.storeid }, function () {
         $scope.item = query.stores[0];    
     });
 })

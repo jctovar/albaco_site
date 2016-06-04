@@ -73,10 +73,20 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           templateUrl: 'templates/suppliers.html',
           controller: 'SuppliersCtrl'
         })
-        .when('/profiles', {
+        .when('/users', {
           title: 'Usuarios',
-          templateUrl: 'templates/profiles.html',
-          controller: 'ProfilesCtrl'
+          templateUrl: 'templates/users/users.html',
+          controller: 'UsersCtrl'
+        })
+        .when('/user', {
+          title: 'Nuevo usuario',
+          templateUrl: 'templates/users/user.html',
+          controller: 'AddUserCtrl'
+        })
+        .when('/user/:userid', {
+          title: 'Editar usuario',
+          templateUrl: 'templates/users/user.html',
+          controller: 'EditUserCtrl'
         })
         .when('/stores', {
           title: 'Almacenes',
