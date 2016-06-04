@@ -105,17 +105,17 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         })
         .when('/customers', {
           title: 'Clientes',
-          templateUrl: 'templates/customers.html',
+          templateUrl: 'templates/customers/customers.html',
           controller: 'CustomersCtrl'
         })
         .when('/customer', {
           title: 'Nuevo cliente',
-          templateUrl: 'templates/customer.html',
+          templateUrl: 'templates/customers/customer.html',
           controller: 'AddCustomerCtrl'
         })
-        .when('/customer/:storeid', {
+        .when('/customer/:customerid', {
           title: 'Editar cliente',
-          templateUrl: 'templates/customer.html',
+          templateUrl: 'templates/customers/customer.html',
           controller: 'EditCustomerCtrl'
         })
         .when('/categories', {

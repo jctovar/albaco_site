@@ -229,6 +229,57 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
 })
 
+.controller('AddCustomerCtrl', function ($scope, $location, $routeParams, $mdToast, customers) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              $scope.item.account_id = sessionStorage.account_id;
+              var result = profiles.save($scope.item, function() {
+                  if (result.profiles.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('users')
+                  };
+              });            
+          } else {
+              $location.path('users')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    }
+    
+    var query1 = roles.get(function() {
+        $scope.list1 = query1.roles;    
+    });
+})
+
+.controller('EditCustomerCtrl', function ($scope, $location, $routeParams, $mdToast, customers) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = customers.update($scope.item, function() {
+                  if (result.customers.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('customers')
+                  };
+              });            
+          } else {
+              $location.path('customers')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+        
+    var query = customers.get({ accountid: sessionStorage.account_id, customerid: $routeParams.customerid }, function () {
+        $scope.item = query.customers[0];    
+    });
+})
+
 .controller('SuppliersCtrl', function ($scope, $location, $mdDialog, $mdToast, suppliers) {
         $scope.$on('$viewContentLoaded', function ($evt, data) {
         inito();
@@ -635,7 +686,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
 
 .controller('LoginCtrl', function ($scope, $route, $location, auth) { 
     $scope.login = function () {
-        auth.login($scope.user_email, $scope.user_password);
+        auth.login($scope.user_username, $scope.user_password);
     }
 })
 

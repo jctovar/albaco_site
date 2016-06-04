@@ -21,10 +21,10 @@
         </md-input-container>
         <md-input-container class="md-block">
             <label>Nombre de usuario</label>
-            <input name="profile_username" ng-model="item.profile_username" type="text" ng-change="change()" md-maxlength="10" required>
+            <input name="profile_username" ng-model="item.profile_username" type="text" ng-change="change()" md-maxlength="18" required>
             <div ng-messages="form.profile_username.$error">
                 <div ng-message="required">Campo requerido</div>
-                <div ng-message="md-maxlength">El campo debe de ser de menos de 10 caracteres de longitud</div>
+                <div ng-message="md-maxlength">El campo debe de ser de menos de 18 caracteres de longitud</div>
             </div>
         </md-input-container>
         <md-input-container class="md-block">
