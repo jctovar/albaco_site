@@ -16,7 +16,7 @@
           <md-list-item md-ink-ripple class="md-3-line" ng-repeat="item in items | filter: searchQuery">
             <div class="md-list-item-text" layout="column">
               <h3 class="dodgerblue">{{ item.profile_name | uppercase }}</h3>
-              <h4>{{ item.rol_name | uppercase }}</h4>
+              <h4>{{ item.role_name | uppercase }}</h4>
               <p>{{ item.profile_username | lowercase }}</p>
             </div>
             <div class="md-secondary md-icon-button" ng-include=" 'templates/users/menu-users.html' "></div>

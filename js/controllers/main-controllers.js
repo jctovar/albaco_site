@@ -141,7 +141,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     }
 })
 
-.controller('EditUserCtrl', function ($scope, $location, $routeParams, $mdToast, profiles) {
+.controller('EditUserCtrl', function ($scope, $location, $routeParams, $mdToast, profiles, roles) {
     $scope.counter = 0;
     
     $scope.save = function () {  
@@ -160,6 +160,10 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     $scope.change = function() {
         $scope.counter++;
     };
+    
+    var query1 = roles.get(function() {
+        $scope.list1 = query1.roles;    
+    });
         
     var query = profiles.get({ accountid: sessionStorage.account_id, profileid: $routeParams.userid }, function () {
         $scope.item = query.profiles[0];    

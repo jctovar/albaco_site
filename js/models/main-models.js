@@ -106,6 +106,13 @@ angular.module('main.models', ['ngResource'])
     });
 })
 
+.factory('roles', function($resource, server_config) {
+	return $resource(server_config.url + '/roles/:id', { account_key : server_config.key, id : '@_id' },
+    {
+        'update': { method:'PUT' }
+    });
+})
+
 .factory('pdf_template', function () {
     return function(title) {  
         var template = {
