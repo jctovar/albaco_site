@@ -119,7 +119,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
 })
 
-.controller('AddUserCtrl', function ($scope, $location, $routeParams, $mdToast, profiles) {
+.controller('AddUserCtrl', function ($scope, $location, $routeParams, $mdToast, profiles, roles) {
     $scope.counter = 0;
     
     $scope.save = function () {  
@@ -139,6 +139,10 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     $scope.change = function() {
         $scope.counter++;
     }
+    
+    var query1 = roles.get(function() {
+        $scope.list1 = query1.roles;    
+    });
 })
 
 .controller('EditUserCtrl', function ($scope, $location, $routeParams, $mdToast, profiles, roles) {
