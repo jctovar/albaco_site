@@ -84,12 +84,12 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           controller: 'StoresCtrl'
         })
         .when('/store', {
-          title: 'Almacenes',
+          title: 'Nuevo almacen',
           templateUrl: 'templates/stores/store.html',
           controller: 'AddStoreCtrl'
         })
         .when('/store/:storeid', {
-          title: 'Almacenes',
+          title: 'Editar almacen',
           templateUrl: 'templates/stores/store.html',
           controller: 'EditStoreCtrl'
         })
@@ -97,6 +97,16 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           title: 'Clientes',
           templateUrl: 'templates/customers.html',
           controller: 'CustomersCtrl'
+        })
+        .when('/customer', {
+          title: 'Nuevo cliente',
+          templateUrl: 'templates/customer.html',
+          controller: 'AddCustomerCtrl'
+        })
+        .when('/customer/:storeid', {
+          title: 'Editar cliente',
+          templateUrl: 'templates/customer.html',
+          controller: 'EditCustomerCtrl'
         })
         .when('/categories', {
           title: 'Categorías',

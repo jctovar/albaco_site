@@ -261,7 +261,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
     
     var del = function (id) {
-            stores.delete({ id: id })
+            stores.delete({ storeid: id })
             .$promise.then(function (result) {
                 inito();
                 $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
@@ -289,6 +289,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     
     $scope.save = function () {  
           if ($scope.counter != 0) {
+              $scope.item.account_id = sessionStorage.account_id;
               var result = stores.save($scope.item, function() {
                   if (result.stores.affectedRows == 1) {
                       $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
