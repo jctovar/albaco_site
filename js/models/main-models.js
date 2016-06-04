@@ -37,7 +37,7 @@ angular.module('main.models', ['ngResource'])
 })
 
 .factory('suppliers', function($resource, server_config) {
-	return $resource(server_config.url + '/suppliers/:accountid/:customerid', { account_key : server_config.key, id : '@_id' },
+	return $resource(server_config.url + '/suppliers/:accountid/:supplierid', { account_key : server_config.key, id : '@_id' },
     {
         'update': { method:'PUT' }
     });

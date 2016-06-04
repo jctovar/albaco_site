@@ -312,7 +312,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
     
     var del = function (id) {
-            suppliers.delete({ id: id })
+            suppliers.delete({ supplierid: id })
             .$promise.then(function (result) {
                 inito();
                 $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
@@ -341,8 +341,8 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     $scope.save = function () {  
           if ($scope.counter != 0) {
               $scope.item.account_id = sessionStorage.account_id;
-              var result = stores.save($scope.item, function() {
-                  if (result.stores.affectedRows == 1) {
+              var result = suppliers.save($scope.item, function() {
+                  if (result.suppliers.affectedRows == 1) {
                       $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
                       $location.path('suppliers')
                   };
@@ -362,8 +362,8 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     
     $scope.save = function () {  
           if ($scope.counter != 0) {
-              var result = stores.update($scope.item, function() {
-                  if (result.stores.affectedRows == 1) {
+              var result = suppliers.update($scope.item, function() {
+                  if (result.suppliers.affectedRows == 1) {
                       $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
                       $location.path('suppliers')
                   };
@@ -377,7 +377,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
         $scope.counter++;
     };
     
-    var query = suppliers.get({ accountid: sessionStorage.account_id, storeid: $routeParams.storeid }, function () {
+    var query = suppliers.get({ accountid: sessionStorage.account_id, supplierid: $routeParams.supplierid }, function () {
         $scope.item = query.suppliers[0];    
     });
 })
