@@ -284,6 +284,52 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
 })
 
+.controller('AddStoreCtrl', function ($scope, $location, $routeParams, $mdToast, stores) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = stores.save($scope.item, function() {
+                  if (result.stores.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('stores')
+                  };
+              });            
+          } else {
+              $location.path('stores')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    }
+})
+
+.controller('EditStoreCtrl', function ($scope, $location, $routeParams, $mdToast, stores) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = stores.update($scope.item, function() {
+                  if (result.stores.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('stores')
+                  };
+              });            
+          } else {
+              $location.path('stores')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+    
+    var query = stores.get({accountid: sessionStorage.account_id, storeid: $routeParams.storeid},function() {
+        $scope.item = query.stores[0];    
+    });
+})
+
 .controller('CategoriesCtrl', function ($scope, $location, $mdDialog, $mdToast, categories) {
     $scope.$on('$viewContentLoaded', function ($evt, data) {
         inito();

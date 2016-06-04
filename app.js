@@ -80,8 +80,18 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         })
         .when('/stores', {
           title: 'Almacenes',
-          templateUrl: 'templates/stores.html',
+          templateUrl: 'templates/stores/stores.html',
           controller: 'StoresCtrl'
+        })
+        .when('/store', {
+          title: 'Almacenes',
+          templateUrl: 'templates/stores/store.html',
+          controller: 'AddStoreCtrl'
+        })
+        .when('/store/:storeid', {
+          title: 'Almacenes',
+          templateUrl: 'templates/stores/store.html',
+          controller: 'EditStoreCtrl'
         })
         .when('/customers', {
           title: 'Clientes',
@@ -95,7 +105,7 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         })
         .when('/dashboard', {
           title: 'Consola',
-          templateUrl: 'templates/dashboard.html',
+          templateUrl: 'templates/app/dashboard.html',
           controller: 'DashboardCtrl'
         })
         .when('/my', {
