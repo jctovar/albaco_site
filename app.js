@@ -65,8 +65,18 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         })
         .when('/products', {
           title: 'Productos',
-          templateUrl: 'templates/products.html',
+          templateUrl: 'templates/products/products.html',
           controller: 'ProductsCtrl'
+        })
+        .when('/product', {
+          title: 'Nuevo producto',
+          templateUrl: 'templates/products/product.html',
+          controller: 'AddProductCtrl'
+        })
+        .when('/product/:productid', {
+          title: 'Editar producto',
+          templateUrl: 'templates/products/product.html',
+          controller: 'EditProductCtrl'
         })
         .when('/suppliers', {
           title: 'Proveedores',
