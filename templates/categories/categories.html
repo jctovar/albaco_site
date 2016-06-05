@@ -13,9 +13,10 @@
       <md-progress-linear class="md-warn" md-mode="indeterminate" ng-hide="bar"> Cargando... </md-progress-linear>
       <md-list>
         <md-subheader>Categorías</md-subheader>
-          <md-list-item md-ink-ripple class="md-2-line" ng-repeat="item in items | filter: searchQuery">
+          <md-list-item md-ink-ripple class="md-3-line" ng-repeat="item in items | filter: searchQuery">
             <div class="md-list-item-text" layout="column">
               <h3 class="dodgerblue">{{ item.category_name | uppercase }}</h3>
+              <h4>{{ item.category_description | uppercase }}&nbsp;</h4>
               <hp>{{ item.product_count }} lineas &nbsp;</p>
             </div>
             <div class="md-secondary md-icon-button" ng-include=" 'templates/categories/menu-categories.html' "></div>

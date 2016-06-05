@@ -19,7 +19,7 @@
               <h4>{{ item.status_id }} {{ item.sale_total | currency }}&nbsp;</h4>
               <p>{{ item.sale_timestamp | date:'medium' }}</p>
             </div>
-            <div class="md-secondary md-icon-button" ng-include=" 'templates/partials/menu-customers.html' "></div>
+            <div class="md-secondary md-icon-button" ng-include=" 'templates/invoices/menu-invoices.html' "></div>
             <md-divider ng-if="!$last"></md-divider>
           </md-list-item>
       </md-list>

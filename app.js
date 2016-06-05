@@ -59,9 +59,19 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           controller: 'StocksCtrl'
         })
         .when('/invoices', {
-          title: 'Notas',
-          templateUrl: 'templates/invoices.html',
+          title: 'Ventas',
+          templateUrl: 'templates/invoices/invoices.html',
           controller: 'InvoicesCtrl'
+        })
+        .when('/invoice', {
+          title: 'Nueva venta',
+          templateUrl: 'templates/invoices/invoice.html',
+          controller: 'AddInvoiceCtrl'
+        })
+        .when('/invoice/:supplierid', {
+          title: 'Editar venta',
+          templateUrl: 'templates/invoices/invoice.html',
+          controller: 'EditInvoiceCtrl'
         })
         .when('/products', {
           title: 'Productos',
