@@ -2,6 +2,15 @@
 <md-content id="content" layout-align="center" class="md-padding" layout="column">
     <!-- Inicia formulario -->
     <form name="form">
+        <md-input-container class="md-block" flex-gt-xs>
+            <label>Categoría</label>
+            <md-select ng-model="item.category_id" ng-change="change()">
+                <md-option ng-repeat="category in list2" value="{{ category.category_id }}">
+                {{ category.category_name }}
+                </md-option>
+            </md-select>
+            <br>
+        </md-input-container>
         <md-input-container class="md-block">
             <label>Nombre completo</label>
             <input name="product_name" ng-model="item.product_name" type="text" ng-change="change()" md-maxlength="45" capitalize required autofocus>
@@ -11,7 +20,7 @@
             </div>
         </md-input-container>
         <md-input-container class="md-block" flex-gt-xs>
-            <label>Perfil del usuario</label>
+            <label>Unidad</label>
             <md-select ng-model="item.unit_id" ng-change="change()">
                 <md-option ng-repeat="unit in list1" value="{{ unit.unit_id }}">
                 {{ unit.unit_name }}

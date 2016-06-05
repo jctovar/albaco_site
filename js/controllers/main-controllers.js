@@ -586,61 +586,6 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     });
 })
 
-.controller('InvoicesCtrl', function ($scope, $location, $mdDialog, $mdToast, invoices) {
-    $scope.$on('$viewContentLoaded', function ($evt, data) {
-        inito();
-    });
-    
-    $scope.clear = function () {
-        console.log($scope.searchQuery);
-        $scope.searchQuery = '';
-    }
-    
-    $scope.add = function () {
-        $location.path('/invoice')
-    }
-    
-    $scope.edit = function (index) {
-        $location.path('/invoice/'+ index);
-    }
-    
-    $scope.delete = function(index, ev) {
-            var confirm = $mdDialog.confirm()
-                .title('Esta seguro de eliminar este registro?')
-                .textContent('El registro sera eliminado permanentemente.')
-                .ok('Si')
-                .cancel('No');
-                $mdDialog.show(confirm).then(function() {
-                        del(index);
-                    }, function() {
-                    console.log('You decided to keep your record.')
-                });
-    };
-    
-    var del = function (id) {
-            invoices.delete({ id: id })
-            .$promise.then(function (result) {
-                inito();
-                $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
-            })
-            .catch(function(error) {
-                $mdToast.show($mdToast.simple().textContent('Ocurrio un error!'));
-            });    
-    }
-    
-    var inito = function () {
-            $scope.bar = false;
-            invoices.get({accountid: sessionStorage.account_id})
-            .$promise.then(function (result) {
-                $scope.items = result.invoices;
-                $scope.bar = !$scope.bar;
-            })
-            .catch(function(error) {
-                $location.path('/login')
-            });
-    };
-})
-
 .controller('ProductsCtrl', function ($scope, $location, $mdDialog, $mdToast, products) {
     $scope.$on('$viewContentLoaded', function ($evt, data) {
         inito();
@@ -696,14 +641,14 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
 })
 
-.controller('AddProductCtrl', function ($scope, $location, $routeParams, $mdToast, units, products) {
+.controller('AddProductCtrl', function ($scope, $location, $routeParams, $mdToast, categories, units, products) {
     $scope.counter = 0;
     
     $scope.save = function () {  
           if ($scope.counter != 0) {
               $scope.item.account_id = sessionStorage.account_id;
-              var result = stores.save($scope.item, function() {
-                  if (result.stores.affectedRows == 1) {
+              var result = products.save($scope.item, function() {
+                  if (result.products.affectedRows == 1) {
                       $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
                       $location.path('stores')
                   };
@@ -717,12 +662,16 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
         $scope.counter++;
     }
     
-    var query1 = units.get(function() {
+    var query1 = units.get(function () {
         $scope.list1 = query1.units;    
+    });
+    
+    var query2 = categories.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.list2 = query2.categories;    
     });
 })
 
-.controller('EditProductCtrl', function ($scope, $location, $routeParams, $mdToast, units, products) {
+.controller('EditProductCtrl', function ($scope, $location, $routeParams, $mdToast, categories, units, products) {
     $scope.counter = 0;
     
     $scope.save = function () {  
@@ -738,17 +687,92 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
           }
     };
     
-    $scope.change = function() {
+    $scope.change = function () {
         $scope.counter++;
     };
     
-    var query1 = units.get(function() {
+    var query1 = units.get(function () {
         $scope.list1 = query1.units;    
+    });
+    
+    var query2 = categories.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.list2 = query2.categories;    
     });
     
     var query = products.get({ accountid: sessionStorage.account_id, productid: $routeParams.productid }, function () {
         $scope.item = query.products[0];    
     });
+})
+
+.controller('InvoicesCtrl', function ($scope, $location, $mdDialog, $mdToast, invoices) {
+    $scope.$on('$viewContentLoaded', function ($evt, data) {
+        inito();
+    });
+    
+    $scope.clear = function () {
+        console.log($scope.searchQuery);
+        $scope.searchQuery = '';
+    }
+    
+    $scope.add = function () {
+        $location.path('/invoice')
+    }
+    
+    $scope.edit = function (index) {
+        $location.path('/invoice/'+ index);
+    }
+    
+    $scope.delete = function(index, ev) {
+            var confirm = $mdDialog.confirm()
+                .title('Esta seguro de eliminar este registro?')
+                .textContent('El registro sera eliminado permanentemente.')
+                .ok('Si')
+                .cancel('No');
+                $mdDialog.show(confirm).then(function() {
+                        del(index);
+                    }, function() {
+                    console.log('You decided to keep your record.')
+                });
+    };
+    
+    var del = function (id) {
+            invoices.delete({ id: id })
+            .$promise.then(function (result) {
+                inito();
+                $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
+            })
+            .catch(function(error) {
+                $mdToast.show($mdToast.simple().textContent('Ocurrio un error!'));
+            });    
+    }
+    
+    var inito = function () {
+            $scope.bar = false;
+            invoices.get({accountid: sessionStorage.account_id})
+            .$promise.then(function (result) {
+                $scope.items = result.invoices;
+                $scope.bar = !$scope.bar;
+            })
+            .catch(function(error) {
+                $location.path('/login')
+            });
+    };
+})
+
+.controller('invoiceCtrl', function ($scope, invoices, details, pdf_template) {
+    var query1 = invoices.get({ id: $routeParams.invoiceId }, function() {
+        $scope.invoice = query1.invoice[0];
+    })
+    
+    var query2 = details.get({ id: $routeParams.invoiceId }, function() {
+        $scope.items = query2.detail;
+    })
+    
+    var docDefinition = pdf_template('hola');
+
+    $scope.printPdf = function () {
+        pdfMake.createPdf(docDefinition).print();
+    };
 })
 
 .controller('StocksCtrl', function ($scope, $location, $mdDialog, $mdToast, stocks) {
@@ -803,22 +827,6 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
             .catch(function(error) {
                 $location.path('/login')
             });
-    };
-})
-
-.controller('invoiceCtrl', function ($scope, invoices, details, pdf_template) {
-    var query1 = invoices.get({ id: $routeParams.invoiceId }, function() {
-        $scope.invoice = query1.invoice[0];
-    })
-    
-    var query2 = details.get({ id: $routeParams.invoiceId }, function() {
-        $scope.items = query2.detail;
-    })
-    
-    var docDefinition = pdf_template('hola');
-
-    $scope.printPdf = function () {
-        pdfMake.createPdf(docDefinition).print();
     };
 })
 
