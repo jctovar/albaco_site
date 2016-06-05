@@ -516,7 +516,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
     
     var del = function (id) {
-            categories.delete({ id: id })
+            categories.delete({ categoryid: id })
             .$promise.then(function (result) {
                 inito();
                 $mdToast.show($mdToast.simple().textContent('Registro eliminado!'));
@@ -537,6 +537,53 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
                 $location.path('/login')
             });
     };
+})
+
+.controller('AddCategoryCtrl', function ($scope, $location, $routeParams, $mdToast, categories) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              $scope.item.account_id = sessionStorage.account_id;
+              var result = categories.save($scope.item, function() {
+                  if (result.categories.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('categories')
+                  };
+              });            
+          } else {
+              $location.path('categories')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    }
+})
+
+.controller('EditCategoryCtrl', function ($scope, $location, $routeParams, $mdToast, categories) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = categories.update($scope.item, function() {
+                  if (result.categories.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('categories')
+                  };
+              });            
+          } else {
+              $location.path('categories')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+    
+    var query = categories.get({ accountid: sessionStorage.account_id, categoryid: $routeParams.categoryid }, function () {
+        $scope.item = query.categories[0];    
+    });
 })
 
 .controller('InvoicesCtrl', function ($scope, $location, $mdDialog, $mdToast, invoices) {

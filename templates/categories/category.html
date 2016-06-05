@@ -1,0 +1,29 @@
+<div ng-include=" 'templates/partials/back.html' "></div>
+<md-content id="content" layout-align="center" class="md-padding" layout="column">
+    <!-- Inicia formulario -->
+    <form name="form">
+        <md-input-container class="md-block">
+            <label>Nombre completo</label>
+            <input name="category_name" ng-model="item.category_name" type="text" ng-change="change()" md-maxlength="45" capitalize required autofocus>
+            <div ng-messages="form.category_name.$error">
+                <div ng-message="required">Campo requerido</div>
+                <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Descripción</label>
+            <input name="category_description" ng-model="item.category_description" type="text" ng-change="change()" md-maxlength="45" capitalize>
+            <div ng-messages="form.category_description.$error">
+                <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+            </div>
+        </md-input-container>
+        <md-switch ng-true-value="1" class="md-primary" ng-model="item.category_visible" aria-label="habilitado" ng-change="change()">
+            Habilitado
+        </md-switch>
+    </form>
+    <!-- Termina formulario -->
+</md-content>
+<md-button  ng-disabled="!form.$valid" class="md-fab md-fab-bottom-right" ng-click="save()">    
+  <md-icon md-svg-icon="check"></md-icon>
+  <md-tooltip md-direction="top"> Aceptar </md-tooltip>
+</md-button>  

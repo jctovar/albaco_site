@@ -130,8 +130,18 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
         })
         .when('/categories', {
           title: 'Categorías',
-          templateUrl: 'templates/categories.html',
+          templateUrl: 'templates/categories/categories.html',
           controller: 'CategoriesCtrl'
+        })
+        .when('/category', {
+          title: 'Nuevo cliente',
+          templateUrl: 'templates/categories/category.html',
+          controller: 'AddCategoryCtrl'
+        })
+        .when('/category/:categoryid', {
+          title: 'Editar cliente',
+          templateUrl: 'templates/categories/category.html',
+          controller: 'EditCategoryCtrl'
         })
         .when('/dashboard', {
           title: 'Consola',
