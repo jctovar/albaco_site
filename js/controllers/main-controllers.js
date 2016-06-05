@@ -696,6 +696,61 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
 })
 
+.controller('AddProductCtrl', function ($scope, $location, $routeParams, $mdToast, units, products) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              $scope.item.account_id = sessionStorage.account_id;
+              var result = stores.save($scope.item, function() {
+                  if (result.stores.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('stores')
+                  };
+              });            
+          } else {
+              $location.path('stores')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    }
+    
+    var query1 = units.get(function() {
+        $scope.list1 = query1.units;    
+    });
+})
+
+.controller('EditProductCtrl', function ($scope, $location, $routeParams, $mdToast, units, products) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = products.update($scope.item, function() {
+                  if (result.products.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('products')
+                  };
+              });            
+          } else {
+              $location.path('products')
+          }
+    };
+    
+    $scope.change = function() {
+        $scope.counter++;
+    };
+    
+    var query1 = units.get(function() {
+        $scope.list1 = query1.units;    
+    });
+    
+    var query = products.get({ accountid: sessionStorage.account_id, productid: $routeParams.productid }, function () {
+        $scope.item = query.products[0];    
+    });
+})
+
 .controller('StocksCtrl', function ($scope, $location, $mdDialog, $mdToast, stocks) {
     $scope.$on('$viewContentLoaded', function ($evt, data) {
         inito();
