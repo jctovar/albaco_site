@@ -951,7 +951,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     });
 })
 
-.controller('passwordCtrl', function ($scope, profiles) {
+.controller('PasswordCtrl', function ($scope, profiles) {
     var query = profiles.get({ accountid: sessionStorage.account_id, profileid: sessionStorage.profile_id }, function () {
         $scope.profile = query.profiles[0];
     });
@@ -962,25 +962,6 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
         delete $scope.profile.profile_password_2;
         profiles.update($scope.profile, function() {
             $state.go('app.dashboard'); 
-        });
-    };
-})
-
-.controller('customerCtrl', function ($scope, $route, $routeParams, $location, customers, discounts) {
-    $scope.customer = {};
-    $scope.title = "Editar cliente";
-    
-    var query1 = discounts.get(function () {
-        $scope.discounts = query1.discounts;
-    });
-    //  get customer
-    var query2 = customers.get({ id: $routeParams.customerId }, function() {
-        $scope.customer = query2.customer[0];
-    })
-    //  save customer
-    $scope.save = function() {
-        customers.update($scope.customer, function() {
-            $location.path('/customers');
         });
     };
 }); 
