@@ -1,38 +1,46 @@
 <div ng-include=" 'templates/partials/toolbar.html' "></div>
 <div flex layout="row">
   <div ng-include=" 'templates/partials/sidebar.html' "></div>
-    
-    
-  <div layout-padding>
-    Falta
-    <ul>
-      <li>Ajuste de rol en usuarios</li>
-      <li>catalogo de roles</li>
-      <li>Impresion PDF</li>
-      <li>Cambio de username</li>
-      <li>Contraseña</li>
-      <li>Nombre de la empresa</li>
-      <li>Calculo de precios</li>
-    </ul>
-    Ok
-    <ul>
-      <li>Administracion de almacen listo</li>
-      <li>Administracion de usuarios listo</li>
-      <li>Administracion de proveedores listo</li>
-      <li>Administracion de categorias listo</li>
-      <li>Administracion de productos listo</li>
-      <li>Datos de la cuenta</li>
-    </ul>
-    
-    <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px" >
-      <md-grid-tile class="dodgerblue" md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1">
-        hhh
-      <md-grid-tile-footer>
-        <h3>#5: (2r x 2c)</h3>
-      </md-grid-tile-footer>
-    </md-grid-tile>
-    </md-grid-list>
-    
-    
+  <div flex-xs flex-gt-xs="50" layout="column" layout-padding>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Cuenta</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <md-card-content-text>
+          <ul>
+            <li>{{ account_name }}</li>
+          </ul>
+        </md-card-content-text>
+      </md-card-content>
+    </md-card>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Modificaciones</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <md-card-content-text>
+          <ul>
+            <li>Ajuste de rol en usuarios</li>
+            <li>Catalogo de roles</li>
+            <li>Impresion PDF</li>
+            <li>Cambio de usuario</li>
+            <li>Contraseña</li>
+            <li class="line-through">Nombre de la empresa</li>
+            <li>Calculo de precios</li>
+            <li class="line-through">Administracion de almacen listo</li>
+            <li class="line-through">Administracion de usuarios listo</li>
+            <li class="line-through">Administracion de proveedores listo</li>
+            <li class="line-through">Administracion de categorias listo</li>
+            <li>Administracion de productos listo</li>
+            <li class="line-through">Datos de la cuenta</li>
+          </ul>
+        </md-card-content-text>
+      </md-card-content>
+    </md-card>
   </div>
 </div>

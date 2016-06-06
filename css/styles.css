@@ -93,3 +93,17 @@ md-icon svg {
   width: 36px;
   height: 36px;
 }
+
+.md-media-lg {
+  width: 256px;
+  height: 256px;
+  background-color: lightslategray;
+}
+
+ul {
+  list-style: none;  
+}
+
+.line-through {
+    text-decoration: line-through;
+}
