@@ -654,11 +654,11 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
               var result = products.save($scope.item, function() {
                   if (result.products.affectedRows == 1) {
                       $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
-                      $location.path('stores')
+                      $location.path('products')
                   };
               });            
           } else {
-              $location.path('stores')
+              $location.path('products')
           }
     };
     
