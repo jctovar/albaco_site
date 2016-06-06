@@ -64,7 +64,8 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
 }) 
 
 .controller('DashboardCtrl', function ($scope) {
-    $scope.account_name = sessionStorage.account_name;   
+    $scope.account_name = sessionStorage.account_name;
+    $scope.profile_name = sessionStorage.profile_name;   
 })
 
 .controller('UsersCtrl', function ($scope, $location, $mdDialog, $mdToast, profiles) {
