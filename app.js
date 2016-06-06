@@ -55,8 +55,18 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
       $routeProvider
         .when('/stocks', {
           title: 'Entradas',
-          templateUrl: 'templates/stocks.html',
+          templateUrl: 'templates/stocks/stocks.html',
           controller: 'StocksCtrl'
+        })
+        .when('/stock', {
+          title: 'Nueva entrada',
+          templateUrl: 'templates/stocks/stock.html',
+          controller: 'AddStockCtrl'
+        })
+        .when('/stock/:stockid', {
+          title: 'Editar entrada',
+          templateUrl: 'templates/stocks/stock.html',
+          controller: 'EditStockCtrl'
         })
         .when('/invoices', {
           title: 'Ventas',
@@ -168,17 +178,17 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           templateUrl: 'templates/app/dashboard.html',
           controller: 'DashboardCtrl'
         })
+        .when('/account', {
+          templateUrl: 'templates/app/account.html',
+          controller: 'AccountCtrl'
+        })
         .when('/my', {
-          templateUrl: 'templates/profile.html',
+          templateUrl: 'templates/app/my.html',
           controller: 'MyCtrl'
         })
         .when('/password', {
-          templateUrl: 'templates/password.html',
+          templateUrl: 'templates/app/password.html',
           controller: 'PasswordCtrl'
-        })
-        .when('/account', {
-          templateUrl: 'templates/account.html',
-          controller: 'AccountCtrl'
         })
         .when('/', {
           title: 'Inicio',

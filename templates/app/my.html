@@ -1,5 +1,45 @@
 <div ng-include=" 'templates/partials/back.html' "></div>
-
-<md-button ng-disabled="!form.$valid" class="md-fab md-warn md-fab-bottom-right" ng-click="save()">        
-    <md-icon> check </md-icon>
-    <md-tooltip md-direction="top"> Guardar </md-tooltip>
+<md-content id="content" layout-align="center" class="md-padding" layout="column">
+    <!-- Inicia formulario -->
+    <form name="form">
+        <md-input-container class="md-block">
+            <label>Nombre completo</label>
+            <input name="profile_name" ng-model="item.profile_name" type="text" ng-change="change()" md-maxlength="45" capitalize required autofocus>
+            <div ng-messages="form.profile_name.$error">
+                <div ng-message="required">Campo requerido</div>
+                <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Nombre de usuario</label>
+            <input name="profile_username" ng-model="item.profile_username" type="text" ng-change="change()" md-maxlength="18" required>
+            <div ng-messages="form.profile_username.$error">
+                <div ng-message="required">Campo requerido</div>
+                <div ng-message="md-maxlength">El campo debe de ser de menos de 18 caracteres de longitud</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Teléfono</label>
+            <input name="profile_phone" ng-model="item.profile_phone" type="text" ng-change="change()" ng-minlength="10" ng-maxlength="10" ng-pattern="/^[0-9]{10}$/">
+            <div ng-messages="form.profile_phone.$error">
+                <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+                    Se requiere un teléfono valido
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Correo electrónico</label>
+            <input name="profile_email" ng-model="item.profile_email" type="email" ng-change="change()" md-maxlength="45" ng-pattern="/^.+@.+\..+$/">
+            <div ng-messages="form.profile_email.$error">
+                <div ng-message-exp="['md-maxlength', 'pattern']">
+                    Se requiere un correo electrónico valido
+                </div>
+            </div>
+        </md-input-container>
+    </form>
+    <!-- Termina formulario -->
+</md-content>
+<md-button  ng-disabled="!form.$valid" class="md-fab md-fab-bottom-right" ng-click="save()">    
+  <md-icon md-svg-icon="check"></md-icon>
+  <md-tooltip md-direction="top"> Aceptar </md-tooltip>
+</md-button>

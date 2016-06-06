@@ -1,0 +1,37 @@
+<div ng-include=" 'templates/partials/back.html' "></div>
+<md-content id="content" layout-align="center" class="md-padding" layout="column">
+    <!-- Inicia formulario -->
+    <form name="form">
+        <md-input-container class="md-block">
+            <label>Nombre completo</label>
+            <input name="category_name" ng-model="item.category_name" type="text" ng-change="change()" md-maxlength="45" capitalize required autofocus>
+            <div ng-messages="form.category_name.$error">
+                <div ng-message="required">Campo requerido</div>
+                <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Precio</label>
+            <input name="stock_price" ng-model="item.stock_price" type="number" ng-change="change()" required>
+            <div ng-messages="form.stock_price.$error">
+                <div ng-message-exp="['required', 'md-maxlength', 'pattern']">
+                    Se requiere un valor valido
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>Cantidad</label>
+            <input name="stock_quantity" ng-model="item.stock_quantity" type="number" ng-change="change()" required>
+            <div ng-messages="form.stock_quantity.$error">
+                <div ng-message-exp="['required', 'md-maxlength', 'pattern']">
+                    Se requiere un valor valido
+                </div>
+            </div>
+        </md-input-container>
+    </form>
+    <!-- Termina formulario -->
+</md-content>
+<md-button  ng-disabled="!form.$valid" class="md-fab md-fab-bottom-right" ng-click="save()">    
+  <md-icon md-svg-icon="check"></md-icon>
+  <md-tooltip md-direction="top"> Aceptar </md-tooltip>
+</md-button>  

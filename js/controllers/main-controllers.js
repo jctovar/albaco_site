@@ -830,14 +830,66 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
 })
 
-.controller('stocksCtrl', function ($scope, $route, $routeParams, $location, products) {
-    $scope.openMenu = function($mdOpenMenu, ev) {
-      originatorEv = ev;
-      $mdOpenMenu(ev);
+.controller('AddStockCtrl', function ($scope, $location, $routeParams, $mdToast, categories, units, stocks) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              $scope.item.account_id = sessionStorage.account_id;
+              var result = products.save($scope.item, function() {
+                  if (result.products.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('stores')
+                  };
+              });            
+          } else {
+              $location.path('stores')
+          }
     };
     
-    var query = products.get({ categoryId: $routeParams.categoryId },function() {
-        $scope.items = query.product;
+    $scope.change = function() {
+        $scope.counter++;
+    }
+    
+    var query1 = units.get(function () {
+        $scope.list1 = query1.units;    
+    });
+    
+    var query2 = categories.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.list2 = query2.categories;    
+    });
+})
+
+.controller('EditStockCtrl', function ($scope, $location, $routeParams, $mdToast, categories, units, stocks) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = stocks.update($scope.item, function() {
+                  if (result.stocks.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('products')
+                  };
+              });            
+          } else {
+              $location.path('products')
+          }
+    };
+    
+    $scope.change = function () {
+        $scope.counter++;
+    };
+    
+    var query1 = units.get(function () {
+        $scope.list1 = query1.units;    
+    });
+    
+    var query2 = categories.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.list2 = query2.categories;    
+    });
+    
+    var query = stocks.get({ accountid: sessionStorage.account_id, stockid: $routeParams.stockid }, function () {
+        $scope.item = query.stocks[0];    
     });
 })
 
@@ -847,30 +899,56 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     }
 })
 
-.controller('accountCtrl', function ($scope, accounts) {
-    var query = accounts.get({ accountid: sessionStorage.account_id }, function () {
-        $scope.account = query.accounts[0];
-    });
+.controller('AccountCtrl', function ($scope, $location, $mdToast, accounts) {
+    $scope.counter = 0;
     
-    //  save data
-    $scope.save = function() {
-        accounts.update($scope.account, function() {
-            $state.go('app.dashboard'); 
-        });
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              $scope.item.account_id = sessionStorage.account_id;
+              var result = accounts.update($scope.item, function() {
+                  if (result.accounts.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('dashboard')
+                  };
+              });            
+          } else {
+              $location.path('dashboard')
+          }
     };
+    
+    $scope.change = function () {
+        $scope.counter++;
+    };
+    
+    var query = accounts.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.item = query.accounts[0];
+    });
 })
 
-.controller('MyCtrl', function ($scope, profiles) {
-    var query = profiles.get({ accountid: sessionStorage.account_id, profileid: sessionStorage.profile_id }, function () {
-        $scope.profile = query.profiles[0];
-    });
+.controller('MyCtrl', function ($scope, $location, $mdToast, profiles) {
+    $scope.counter = 0;
     
-    //  save data
-    $scope.save = function() {
-        profiles.update($scope.profile, function() {
-            $state.go('app.dashboard'); 
-        });
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              $scope.item.account_id = sessionStorage.account_id;
+              var result = profiles.update($scope.item, function() {
+                  if (result.profiles.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('dashboard')
+                  };
+              });            
+          } else {
+              $location.path('dashboard')
+          }
     };
+    
+    $scope.change = function () {
+        $scope.counter++;
+    };
+    
+    var query = profiles.get({ accountid: sessionStorage.account_id, profileid: sessionStorage.profile_id }, function () {
+        $scope.item = query.profiles[0];
+    });
 })
 
 .controller('passwordCtrl', function ($scope, profiles) {
@@ -878,7 +956,6 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
         $scope.profile = query.profiles[0];
     });
     
-    //  save data
     $scope.save = function() {
         $scope.profile.profile_password = $scope.profile.profile_password_1;
         delete $scope.profile.profile_password_1;
