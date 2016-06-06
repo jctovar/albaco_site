@@ -3,8 +3,25 @@
     <md-button class="md-icon-button" ng-click="toggleSidenav('left')" aria-label="Menu">
       <md-icon md-svg-icon="menu"></md-icon>
     </md-button>
-    <h3>{{ account_name }}</h3>
+    <h3 ng-click="go('dashboard')">{{ account_name }}</h3>
     <span flex></span>
     <p class="small">{{ profile_name }}</p>
+    <md-menu md-position-mode="target-right target">
+        <md-button aria-label="Menu" class="md-icon-button" md-ink-ripple ng-click="openMenu($mdOpenMenu, $event)">
+            <md-icon md-svg-icon="more_vert"></md-icon>
+        </md-button>
+          <md-menu-content width="4">
+            <md-menu-item>
+            <md-button ng-click="go('my')">
+                <div layout="row"><p flex>Perfil</p></div>
+            </md-button>
+            </md-menu-item>
+            <md-menu-item>
+            <md-button ng-click="logout()">
+                <div layout="row"><p flex>Salir</p></div>
+            </md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>
   </div>
 </md-toolbar>

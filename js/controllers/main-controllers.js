@@ -21,10 +21,23 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
 })
 
-.controller('NavCtrl', function ($scope, $location, $mdSidenav) {
+.controller('NavCtrl', function ($scope, $location, $mdSidenav, auth) {
     $scope.toggleSidenav = function (menuId) {
       $mdSidenav(menuId).toggle();
     };
+    
+    $scope.openMenu = function ($mdOpenMenu, ev) {
+        originatorEv = ev;
+        $mdOpenMenu(ev);
+    };
+    
+    $scope.logout = function () {
+          auth.logout();
+    }; 
+    
+    $scope.go = function (value) {
+        $location.path(value);
+    }    
     
     $scope.account_name = sessionStorage.account_name;
     $scope.profile_name = sessionStorage.profile_name;
