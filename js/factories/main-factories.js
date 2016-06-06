@@ -11,6 +11,7 @@ angular.module('main.auth', ['ngResource'])
                     sessionStorage.profile_name = query.login[0].profile_name;
                     sessionStorage.account_id = query.login[0].account_id;
                     sessionStorage.account_name = query.login[0].account_name;
+                    sessionStorage.account_email = query.login[0].account_email;
                     //mandamos al dashboard
                     $location.path("dashboard");
                 } else {

@@ -78,6 +78,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
 
 .controller('DashboardCtrl', function ($scope) {
     $scope.account_name = sessionStorage.account_name;
+    $scope.account_email = sessionStorage.account_email;
     $scope.profile_name = sessionStorage.profile_name;   
 })
 
@@ -968,17 +969,30 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     });
 })
 
-.controller('PasswordCtrl', function ($scope, profiles) {
-    var query = profiles.get({ accountid: sessionStorage.account_id, profileid: sessionStorage.profile_id }, function () {
-        $scope.profile = query.profiles[0];
-    });
+.controller('PasswordCtrl', function ($scope, $location, $mdToast, profiles) {
+    $scope.counter = 0;
     
     $scope.save = function() {
-        $scope.profile.profile_password = $scope.profile.profile_password_1;
-        delete $scope.profile.profile_password_1;
-        delete $scope.profile.profile_password_2;
-        profiles.update($scope.profile, function() {
-            $state.go('app.dashboard'); 
-        });
+        if ($scope.counter != 0) {
+            $scope.item.profile_password = $scope.item.profile_password_1;
+            delete $scope.item.profile_password_1;
+            delete $scope.item.profile_password_2;
+            var result = profiles.update($scope.item, function() {
+                  if (result.profiles.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('dashboard')
+                  };
+            });  
+        } else {
+              $location.path('dashboard')
+        }
     };
+    
+    $scope.change = function () {
+        $scope.counter++;
+    };
+    
+    var query = profiles.get({ accountid: sessionStorage.account_id, profileid: sessionStorage.profile_id }, function () {
+        $scope.item = query.profiles[0];
+    });
 }); 
