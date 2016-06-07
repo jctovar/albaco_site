@@ -78,7 +78,7 @@ angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', '
           templateUrl: 'templates/invoices/invoice.html',
           controller: 'AddInvoiceCtrl'
         })
-        .when('/invoice/:supplierid', {
+        .when('/invoice/:invoiceid', {
           title: 'Editar venta',
           templateUrl: 'templates/invoices/invoice.html',
           controller: 'EditInvoiceCtrl'

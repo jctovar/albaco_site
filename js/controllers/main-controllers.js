@@ -266,11 +266,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     
     $scope.change = function() {
         $scope.counter++;
-    }
-    
-    var query1 = roles.get(function() {
-        $scope.list1 = query1.roles;    
-    });
+    };
 })
 
 .controller('EditCustomerCtrl', function ($scope, $location, $routeParams, $mdToast, customers) {
@@ -777,7 +773,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
 })
 
-.controller('invoiceCtrl', function ($scope, invoices, details, pdf_template) {
+.controller('AddInvoiceCtrl', function ($scope, $location, $routeParams, $mdToast, pdf_template,categories, units, products, details, invoices) {
     var query1 = invoices.get({ id: $routeParams.invoiceId }, function() {
         $scope.invoice = query1.invoice[0];
     })
@@ -791,6 +787,39 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     $scope.printPdf = function () {
         pdfMake.createPdf(docDefinition).print();
     };
+})
+
+.controller('EditInvoiceCtrl', function ($scope, $location, $routeParams, $mdToast, pdf_template,categories, units, products, details, invoices) {
+    $scope.counter = 0;
+    
+    $scope.save = function () {  
+          if ($scope.counter != 0) {
+              var result = products.update($scope.item, function() {
+                  if (result.products.affectedRows == 1) {
+                      $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
+                      $location.path('products')
+                  };
+              });            
+          } else {
+              $location.path('products')
+          }
+    };
+    
+    $scope.change = function () {
+        $scope.counter++;
+    };
+    
+    var query1 = units.get(function () {
+        $scope.list1 = query1.units;    
+    });
+    
+    var query2 = categories.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.list2 = query2.categories;    
+    });
+    
+    var query = products.get({ accountid: sessionStorage.account_id, productid: $routeParams.productid }, function () {
+        $scope.item = query.products[0];    
+    });
 })
 
 .controller('StocksCtrl', function ($scope, $location, $mdDialog, $mdToast, stocks) {
