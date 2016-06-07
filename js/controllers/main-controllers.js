@@ -253,14 +253,14 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     $scope.save = function () {  
           if ($scope.counter != 0) {
               $scope.item.account_id = sessionStorage.account_id;
-              var result = profiles.save($scope.item, function() {
-                  if (result.profiles.affectedRows == 1) {
+              var result = customers.save($scope.item, function() {
+                  if (result.customers.affectedRows == 1) {
                       $mdToast.show($mdToast.simple().textContent('Datos guardados!'));
-                      $location.path('users')
+                      $location.path('customers')
                   };
               });            
           } else {
-              $location.path('users')
+              $location.path('customers')
           }
     };
     

@@ -12,18 +12,18 @@
         </md-input-container>
         <md-input-container class="md-block">
             <label>Dirección 1</label>
-            <input name="customer_address_1" ng-model="item.customer_address_1" type="text" ng-change="change()" md-maxlength="45" capitalize required>
+            <input name="customer_address_1" ng-model="item.customer_address_1" type="text" ng-change="change()" md-maxlength="95" capitalize required>
             <div ng-messages="form.customer_address_1.$error">
                 <div ng-message="required">Campo requerido</div>
-                <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+                <div ng-message="md-maxlength">El campo debe de ser de menos de 95 caracteres de longitud</div>
             </div>
         </md-input-container>
         <md-input-container class="md-block">
             <label>Dirección 2</label>
-            <input name="customer_address_2" ng-model="item.customer_address_2" type="text" ng-change="change()" md-maxlength="45" capitalize required>
+            <input name="customer_address_2" ng-model="item.customer_address_2" type="text" ng-change="change()" md-maxlength="95" capitalize required>
             <div ng-messages="form.customer_address_2.$error">
                 <div ng-message="required">Campo requerido</div>
-                <div ng-message="md-maxlength">El campo debe de ser de menos de 45 caracteres de longitud</div>
+                <div ng-message="md-maxlength">El campo debe de ser de menos de 95 caracteres de longitud</div>
             </div>
         </md-input-container>
         <md-input-container class="md-block">
@@ -50,6 +50,15 @@
             <div ng-messages="form.customer_email.$error">
                 <div ng-message-exp="['required', 'md-maxlength', 'pattern']">
                     Se requiere un correo electrónico valido
+                </div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>RFC</label>
+            <input name="customer_rfc" ng-model="item.customer_rfc" type="text" ng-change="change()" ng-minlength="12" ng-maxlength="13" capitalize ng-pattern="/^([A-Z,Ñ,&]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$/">
+            <div ng-messages="form.customer_rfc.$error">
+                <div ng-message-exp="['minlength', 'maxlength', 'pattern']">
+                    Se requiere un rfc valido
                 </div>
             </div>
         </md-input-container>

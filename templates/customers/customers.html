@@ -16,7 +16,7 @@
           <md-list-item md-ink-ripple class="md-2-line" ng-repeat="item in items | filter: searchQuery">
             <div class="md-list-item-text" layout="column">
               <h3 class="dodgerblue">{{ item.customer_name | uppercase }}</h3>
-              <p>{{ item.customer_address_1 | uppercase }} {{ item.customer_address_2 | uppercase }}</p>
+              <p>{{ item.customer_rfc | uppercase }}</p>
             </div>
             <div class="md-secondary md-icon-button" ng-include=" 'templates/customers/menu-customers.html' "></div>
             <md-divider ng-if="!$last"></md-divider>
