@@ -113,6 +113,10 @@ angular.module('main.models', ['ngResource'])
     });
 })
 
+.factory('ip', function($resource, server_config) {
+	return $resource('https://api.ipify.org/?format=jsonp&callback=getIP');
+})
+
 .factory('pdf_template', function () {
     return function(title) {  
         var template = {

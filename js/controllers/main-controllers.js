@@ -76,12 +76,18 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
 }) 
 
-.controller('DashboardCtrl', function ($scope) {
+.controller('DashboardCtrl', function ($scope, ip) {
     $scope.account_name = sessionStorage.account_name;
     $scope.account_email = sessionStorage.account_email;
     $scope.profile_name = sessionStorage.profile_name;
     
-    console.log(location.hostname);   
+    
+    
+    console.log()
+    
+    
+    
+     
 })
 
 .controller('UsersCtrl', function ($scope, $location, $mdDialog, $mdToast, profiles) {
