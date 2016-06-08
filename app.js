@@ -1,4 +1,4 @@
-angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngMessages', 'ngMaterial', 'ngAnimate', 'ngAria', 'ui.gravatar', 'main.controllers'])
+angular.module('starter', ['ngRoute', 'ngResource', 'ngSanitize', 'ngAnimate', 'ngMessages', 'ngMaterial', 'ngAnimate', 'ngAria', 'md.data.table', 'ui.gravatar', 'main.controllers'])
 
 .config(function($mdIconProvider, $mdThemingProvider) {
       // Configure URLs for icons specified by [set:]id.

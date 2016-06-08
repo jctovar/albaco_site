@@ -114,7 +114,7 @@ angular.module('main.models', ['ngResource'])
 })
 
 .factory('ip', function($resource, server_config) {
-	return $resource('https://api.ipify.org/?format=jsonp&callback=getIP');
+	return $resource('https://api.ipify.org/?format=json');
 })
 
 .factory('pdf_template', function () {
