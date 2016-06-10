@@ -47,6 +47,22 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     $scope.back = function () {
         $window.history.back();
     }
+    
+    $scope.openMenu = function ($mdOpenMenu, ev) {
+        originatorEv = ev;
+        $mdOpenMenu(ev);
+    };
+    
+    $scope.logout = function () {
+          auth.logout();
+    };
+    
+    $scope.go = function (value) {
+        $location.path(value);
+    }  
+    
+    $scope.account_name = sessionStorage.account_name;
+    $scope.profile_name = sessionStorage.profile_name;
 })
 
 .controller('SideCtrl', function ($scope, $location, navigation, auth) {
@@ -793,7 +809,7 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
     };
 })
 
-.controller('EditInvoiceCtrl', function ($scope, $location, $routeParams, $mdToast, pdf_template,categories, units, products, details, invoices) {
+.controller('EditInvoiceCtrl', function ($scope, $filter, $location, $routeParams, $mdToast, pdf_template, customers, units, products, details, invoices) {
     $scope.counter = 0;
     
     $scope.save = function () {  
@@ -817,12 +833,13 @@ angular.module('main.controllers', ['main.auth', 'main.models', 'main.directives
         $scope.list1 = query1.units;    
     });
     
-    var query2 = categories.get({ accountid: sessionStorage.account_id }, function () {
-        $scope.list2 = query2.categories;    
+    var query2 = customers.get({ accountid: sessionStorage.account_id }, function () {
+        $scope.customers = query2.customers;    
     });
     
-    var query = products.get({ accountid: sessionStorage.account_id, productid: $routeParams.productid }, function () {
-        $scope.item = query.products[0];    
+    var query = invoices.get({ accountid: sessionStorage.account_id, invoiceid: $routeParams.invoiceid }, function () {
+        $scope.item = query.invoices[0];
+        //$scope.item.sale_timestamp = $filter('date')(query.invoices[0].sale_timestamp,'short');    
     });
 })
 
